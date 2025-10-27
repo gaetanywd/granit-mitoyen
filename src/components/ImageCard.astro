@@ -1,5 +1,5 @@
 ---
-// Composant carte image réutilisable
+// Composant carte image réutilisable avec lightbox au clic
 // Props: src, alt, title (optionnel)
 interface Props {
   src: string;
@@ -14,7 +14,8 @@ const { src, alt, title } = Astro.props;
   <img 
     src={src}
     alt={alt}
-    class="w-full h-64 object-cover"
+    class="w-full h-64 object-cover cursor-pointer hover:opacity-90 transition-opacity"
+    data-lightbox="true"
   />
   {title && (
     <div class="p-4">
@@ -22,4 +23,43 @@ const { src, alt, title } = Astro.props;
     </div>
   )}
 </div>
+
+<script>
+  // Script exécuté pour chaque instance du composant
+  // Lightbox simple au clic sur l'image
+  document.addEventListener('DOMContentLoaded', () => {
+    const images = document.querySelectorAll('[data-lightbox="true"]');
+    
+    images.forEach((img) => {
+      img.addEventListener('click', () => {
+        // Créer l'overlay de la lightbox
+        const lightbox = document.createElement('div');
+        lightbox.className = 'fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4 cursor-pointer';
+        
+        // Créer l'image agrandie
+        const largeImg = document.createElement('img');
+        largeImg.src = (img as HTMLImageElement).src;
+        largeImg.alt = (img as HTMLImageElement).alt;
+        largeImg.className = 'max-w-full max-h-full object-contain';
+        
+        lightbox.appendChild(largeImg);
+        document.body.appendChild(lightbox);
+        
+        // Fermer au clic
+        lightbox.addEventListener('click', () => {
+          lightbox.remove();
+        });
+        
+        // Fermer avec Échap
+        const closeOnEscape = (e: KeyboardEvent) => {
+          if (e.key === 'Escape') {
+            lightbox.remove();
+            document.removeEventListener('keydown', closeOnEscape);
+          }
+        };
+        document.addEventListener('keydown', closeOnEscape);
+      });
+    });
+  });
+</script>
 
