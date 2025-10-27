@@ -1,0 +1,25 @@
+---
+// Composant carte image réutilisable
+// Props: src, alt, title (optionnel)
+interface Props {
+  src: string;
+  alt: string;
+  title?: string;
+}
+
+const { src, alt, title } = Astro.props;
+---
+
+<div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow">
+  <img 
+    src={src}
+    alt={alt}
+    class="w-full h-64 object-cover"
+  />
+  {title && (
+    <div class="p-4">
+      <h3 class="font-semibold">{title}</h3>
+    </div>
+  )}
+</div>
+

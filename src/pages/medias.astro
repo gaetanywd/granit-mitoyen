@@ -1,6 +1,7 @@
 ---
 // Page Médias
 import Layout from '../layouts/Layout.astro';
+import ImageCard from '../components/ImageCard.astro';
 ---
 
 <Layout title="Médias - Granit Mitoyen">
@@ -23,38 +24,21 @@ import Layout from '../layouts/Layout.astro';
   <!-- Galerie photos concert Montfort -->
   <h2 class="text-2xl font-semibold mb-4 mt-8">Concert Montfort</h2>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-      <img 
-        src="/concerts/montfort/Montfort 1.jpg" 
-        alt="Concert Montfort - Photo 1" 
-        class="w-full h-64 object-cover"
-      />
-      <div class="p-4">
-        <h3 class="font-semibold">Montfort 1</h3>
-      </div>
-    </div>
-    
-    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-      <img 
-        src="/concerts/montfort/Montfort 2.jpg" 
-        alt="Concert Montfort - Photo 2" 
-        class="w-full h-64 object-cover"
-      />
-      <div class="p-4">
-        <h3 class="font-semibold">Montfort 2</h3>
-      </div>
-    </div>
-    
-    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-      <img 
-        src="/concerts/montfort/Montfort 3.jpg" 
-        alt="Concert Montfort - Photo 3" 
-        class="w-full h-64 object-cover"
-      />
-      <div class="p-4">
-        <h3 class="font-semibold">Montfort 3</h3>
-      </div>
-    </div>
+    <ImageCard 
+      src="/concerts/montfort/Montfort 1.jpg"
+      alt="Concert Montfort - Photo 1"
+      title="Montfort 1"
+    />
+    <ImageCard 
+      src="/concerts/montfort/Montfort 2.jpg"
+      alt="Concert Montfort - Photo 2"
+      title="Montfort 2"
+    />
+    <ImageCard 
+      src="/concerts/montfort/Montfort 3.jpg"
+      alt="Concert Montfort - Photo 3"
+      title="Montfort 3"
+    />
   </div>
 </Layout>
 
