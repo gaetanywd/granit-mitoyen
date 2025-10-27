@@ -1,21 +1,12 @@
 ---
-import "../styles/global.css";
+// Page d'accueil
+import Layout from '../layouts/Layout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Granit Mitoyen</title>
-	</head>
-
-	<body>
-		<h1 class="text-3xl font-bold text-center">Granit Mitoyen</h1>
-		<div class="m-auto">
-			<div class="text-center">Black magic</div>
-			<div class="text-center">From the deep</div>
-		</div>
-	</body>
-</html>
+<Layout title="Accueil - Granit Mitoyen">
+	<h1 class="text-3xl font-bold text-center mb-8">Granit Mitoyen</h1>
+	<div class="max-w-2xl mx-auto text-center space-y-4">
+		<div class="text-xl text-gray-700">Black magic</div>
+		<div class="text-xl text-gray-700">From the deep</div>
+	</div>
+</Layout>

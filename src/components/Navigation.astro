@@ -1,0 +1,28 @@
+---
+// Composant de navigation réutilisable
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="bg-gray-800 text-white p-4">
+  <div class="container mx-auto flex gap-6">
+    <a 
+      href="/" 
+      class:list={[
+        "hover:text-blue-300 transition-colors",
+        currentPath === "/" && "text-blue-400 font-bold"
+      ]}
+    >
+      Home
+    </a>
+    <a 
+      href="/medias" 
+      class:list={[
+        "hover:text-blue-300 transition-colors",
+        currentPath === "/medias" && "text-blue-400 font-bold"
+      ]}
+    >
+      Médias
+    </a>
+  </div>
+</nav>
+
