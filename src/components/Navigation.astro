@@ -70,6 +70,12 @@ const isPresentation =
   currentPath === '/presentation/' ||
   currentPath === '/en/presentation' ||
   currentPath === '/en/presentation/';
+
+const isKillbirgahn =
+  currentPath === '/killbirgahn' ||
+  currentPath === '/killbirgahn/' ||
+  currentPath === '/en/killbirgahn' ||
+  currentPath === '/en/killbirgahn/';
 ---
 
 <nav class="bg-gray-800 text-white p-4">
@@ -113,6 +119,15 @@ const isPresentation =
         ]}
       >
         {t(locale, 'nav.presentation')}
+      </a>
+      <a
+        href="/killbirgahn"
+        class:list={[
+          "hover:text-blue-300 transition-colors",
+          isKillbirgahn && "text-blue-400 font-bold",
+        ]}
+      >
+        {t(locale, 'nav.killbirgahn')}
       </a>
     </div>
 

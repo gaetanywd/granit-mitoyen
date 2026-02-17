@@ -10,6 +10,7 @@ export const translations = {
     'nav.medias': 'Médias',
     'nav.shows': 'Concerts',
     'nav.presentation': 'Présentation',
+    'nav.killbirgahn': 'Killbirgahn',
 
     // Layout / titre du site
     'layout.siteTitle': 'Granit Mitoyen',
@@ -40,6 +41,18 @@ export const translations = {
     'presentation.role.guitar': 'Guitare',
     'presentation.role.bass': 'Basse',
     'presentation.role.drums': 'Batterie',
+
+    // Page Killbirgahn (lore)
+    'killbirgahn.title': 'Killbirgahn',
+    'killbirgahn.intro':
+      "Killbirgahn est un monde de dark fantasy où dieux et forces plus anciennes se jouent des mortels. L'album « Lands Of Killbirgahn » raconte une tragédie sans héros : peur, erreur et équilibre.",
+    'killbirgahn.tease.asel':
+      "Sur la glace, une femme entend des voix qui ne viennent ni du vent ni des vivants. Asel ne sait pas encore qu'elle sera au centre d'un conflit qui dépasse les dieux eux-mêmes.",
+    'killbirgahn.tease.samael':
+      "Dans une cité blanche, un jeune apprenti mage est laissé seul face à une menace qu'il n'aurait jamais dû affronter. La peur et l'urgence le poussent vers un choix dont on ne revient pas.",
+    'killbirgahn.tease.scroll':
+      "Un parchemin scellé, oublié au fond d'une bibliothèque interdite. Un sort de pluie de feu qui ne devait jamais quitter le papier. Certaines erreurs ne brûlent pas qu'une seule ville.",
+    'killbirgahn.coverAlt': 'Lands Of Killbirgahn – pochette de l’album',
   },
   en: {
     // Navigation
@@ -47,6 +60,7 @@ export const translations = {
     'nav.medias': 'Media',
     'nav.shows': 'Shows',
     'nav.presentation': 'About',
+    'nav.killbirgahn': 'Killbirgahn',
 
     // Layout / titre du site
     'layout.siteTitle': 'Granit Mitoyen',
@@ -77,6 +91,18 @@ export const translations = {
     'presentation.role.guitar': 'Guitar',
     'presentation.role.bass': 'Bass',
     'presentation.role.drums': 'Drums',
+
+    // Killbirgahn lore page
+    'killbirgahn.title': 'Killbirgahn',
+    'killbirgahn.intro':
+      "Killbirgahn is a dark fantasy world where gods and older forces play with mortal lives. The album “Lands Of Killbirgahn” unfolds like a tragedy without heroes: fear, mistakes, and a fragile balance.",
+    'killbirgahn.tease.asel':
+      'Out on the ice, a woman hears voices that belong neither to the wind nor to the living. Asel has no idea yet that she will stand at the center of a conflict that even the gods cannot control.',
+    'killbirgahn.tease.samael':
+      'In a white city, a young apprentice mage is left alone to face a threat he was never meant to confront. Fear and urgency drive him toward a decision he cannot undo.',
+    'killbirgahn.tease.scroll':
+      'A sealed scroll, buried in a forbidden library. A rain-of-fire spell that was never meant to leave the page. Some mistakes burn far more than a single kingdom.',
+    'killbirgahn.coverAlt': 'Lands Of Killbirgahn – album cover',
   },
 } as const;
 
