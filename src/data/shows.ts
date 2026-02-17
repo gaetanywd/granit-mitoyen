@@ -27,7 +27,7 @@ export const shows: Show[] = [
   },
   {
     dateLabel: '9 avril 2025',
-    address: 'Jardin Modern, Rennes',
+    address: 'Jardin Moderne, Rennes',
     links: {},
   },
 ];

@@ -1,0 +1,48 @@
+---
+// Page About / Presentation — version anglaise.
+import Layout from '../../layouts/Layout.astro';
+import MemberBlock from '../../components/MemberBlock.astro';
+import { members } from '../../data/members';
+import { t, type Locale } from '../../i18n/dict';
+
+const currentLocale = (Astro.currentLocale ?? 'en') as Locale;
+const pageTitle = `${t(currentLocale, 'presentation.title')} - ${t(currentLocale, 'layout.siteTitle')}`;
+---
+
+<Layout title={pageTitle}>
+  <h1 class="text-3xl font-bold mb-6">
+    {t(currentLocale, 'presentation.title')}
+  </h1>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold mb-4">
+      {t(currentLocale, 'presentation.groupHeading')}
+    </h2>
+    <p class="text-gray-700 leading-relaxed mb-6 max-w-3xl">
+      {t(currentLocale, 'presentation.intro')}
+    </p>
+    <img
+      src="/images/Granit Mitoyen members horizontal.jpg"
+      alt="Granit Mitoyen"
+      class="w-full max-w-4xl rounded-lg shadow-md mb-8"
+    />
+  </section>
+
+  <div class="space-y-0">
+    {members.map((member, index) => (
+      <MemberBlock
+        member={member}
+        imageOnLeft={index % 2 === 0}
+        locale={currentLocale}
+      />
+    ))}
+  </div>
+
+  <div class="mt-12 flex justify-center">
+    <img
+      src="/images/Granit Mitoyen members vertical.jpg"
+      alt="Granit Mitoyen"
+      class="w-full max-w-sm rounded-lg shadow-md"
+    />
+  </div>
+</Layout>

@@ -9,6 +9,7 @@ export const translations = {
     'nav.home': 'Accueil',
     'nav.medias': 'Médias',
     'nav.shows': 'Concerts',
+    'nav.presentation': 'Présentation',
 
     // Layout / titre du site
     'layout.siteTitle': 'Granit Mitoyen',
@@ -30,12 +31,22 @@ export const translations = {
     'shows.linkFacebook': 'Facebook',
     'shows.linkInstagram': 'Instagram',
     'shows.linkWeb': 'Site',
+
+    // Page présentation
+    'presentation.title': 'Présentation',
+    'presentation.groupHeading': 'Présentation du groupe',
+    'presentation.intro': "Groupe indépendant originaire de Rennes, Granit Mitoyen est né en 2022 avec un premier chanteur. C'est en mai 2024, que Yann, Vanessa et Gaétan trouvent la voix qui affirme le style musical du groupe : Yoann. Influencés par des groupes comme Kyuss, 1000mods, black sabbath mais encore d'autres genres musicaux, les compositions naviguent entre des riffs lourds, psychédéliques et metal pour faire naître un stoner original. Composé de 4 membres : Yoann au Chant, Yann à la Guitare, Vanessa à la Basse et Gaétan à la Batterie, le groupe vous transportera dans un univers fantasy au son granitique.",
+    'presentation.role.vocals': 'Chant',
+    'presentation.role.guitar': 'Guitare',
+    'presentation.role.bass': 'Basse',
+    'presentation.role.drums': 'Batterie',
   },
   en: {
     // Navigation
     'nav.home': 'Home',
     'nav.medias': 'Media',
     'nav.shows': 'Shows',
+    'nav.presentation': 'About',
 
     // Layout / titre du site
     'layout.siteTitle': 'Granit Mitoyen',
@@ -57,6 +68,15 @@ export const translations = {
     'shows.linkFacebook': 'Facebook',
     'shows.linkInstagram': 'Instagram',
     'shows.linkWeb': 'Website',
+
+    // Presentation / about page
+    'presentation.title': 'About',
+    'presentation.groupHeading': 'About the band',
+    'presentation.intro': "Independent band from Rennes, Granit Mitoyen was born in 2022 with a first singer. In May 2024, Yann, Vanessa and Gaétan found the voice that defines the band's sound: Yoann. Influenced by bands like Kyuss, 1000mods, Black Sabbath and other genres, their music blends heavy, psychedelic and metal riffs into an original stoner sound. With four members—Yoann on vocals, Yann on guitar, Vanessa on bass and Gaétan on drums—the band takes you into a fantasy world with a granitic sound.",
+    'presentation.role.vocals': 'Vocals',
+    'presentation.role.guitar': 'Guitar',
+    'presentation.role.bass': 'Bass',
+    'presentation.role.drums': 'Drums',
   },
 } as const;
 

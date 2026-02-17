@@ -64,6 +64,12 @@ const isShows =
   currentPath === '/shows/' ||
   currentPath === '/en/shows' ||
   currentPath === '/en/shows/';
+
+const isPresentation =
+  currentPath === '/presentation' ||
+  currentPath === '/presentation/' ||
+  currentPath === '/en/presentation' ||
+  currentPath === '/en/presentation/';
 ---
 
 <nav class="bg-gray-800 text-white p-4">
@@ -98,6 +104,15 @@ const isShows =
         ]}
       >
         {t(locale, 'nav.shows')}
+      </a>
+      <a
+        href="/presentation"
+        class:list={[
+          "hover:text-blue-300 transition-colors",
+          isPresentation && "text-blue-400 font-bold",
+        ]}
+      >
+        {t(locale, 'nav.presentation')}
       </a>
     </div>
 

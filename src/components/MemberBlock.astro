@@ -1,0 +1,42 @@
+---
+// Bloc membre : image d’un côté, texte lorem ipsum de l’autre.
+// imageOnLeft : true = image à gauche (desktop), false = image à droite.
+// Sur mobile, on affiche toujours image puis texte (colonne unique).
+import { t, type Locale } from '../i18n/dict';
+import type { Member } from '../data/members';
+
+interface Props {
+  member: Member;
+  imageOnLeft: boolean;
+  locale: Locale;
+}
+
+const { member, imageOnLeft, locale } = Astro.props;
+
+// Lorem ipsum court pour la place du texte (même bloc pour tous les membres).
+const loremText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.';
+---
+
+<section class="flex flex-col gap-4 md:flex-row md:items-center md:gap-8 py-6 border-b border-gray-200 last:border-b-0">
+  <!-- Colonne image : ordre DOM = image en premier sur mobile ; sur desktop, order visuel selon imageOnLeft -->
+  <div
+    class:list={[
+      'flex-shrink-0 w-full md:w-80',
+      !imageOnLeft && 'md:order-2',
+    ]}
+  >
+    <img
+      src={member.image}
+      alt={`${member.name}, ${t(locale, member.roleKey)}`}
+      class="w-full h-auto rounded-lg object-cover max-h-96 md:max-h-none"
+    />
+  </div>
+  <!-- Colonne texte -->
+  <div class:list={[!imageOnLeft && 'md:order-1']}>
+    <h3 class="text-xl font-semibold text-gray-800 mb-1">{member.name}</h3>
+    <p class="text-sm text-gray-500 mb-3">{t(locale, member.roleKey)}</p>
+    <p class="text-gray-700 leading-relaxed">
+      {loremText}
+    </p>
+  </div>
+</section>
