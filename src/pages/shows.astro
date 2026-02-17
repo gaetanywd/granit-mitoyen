@@ -1,0 +1,22 @@
+---
+// Page Concerts / Shows — liste des concerts passés (date, lieu, liens).
+import Layout from '../layouts/Layout.astro';
+import ShowCard from '../components/ShowCard.astro';
+import { shows } from '../data/shows';
+import { t, type Locale } from '../i18n/dict';
+
+const currentLocale = (Astro.currentLocale ?? 'fr') as Locale;
+const pageTitle = `${t(currentLocale, 'shows.title')} - ${t(currentLocale, 'layout.siteTitle')}`;
+---
+
+<Layout title={pageTitle}>
+  <h1 class="text-3xl font-bold mb-6">
+    {t(currentLocale, 'shows.title')}
+  </h1>
+
+  <div class="space-y-4 max-w-2xl">
+    {shows.map((show) => (
+      <ShowCard show={show} locale={currentLocale} />
+    ))}
+  </div>
+</Layout>

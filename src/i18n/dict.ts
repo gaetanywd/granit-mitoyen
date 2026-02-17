@@ -8,6 +8,7 @@ export const translations = {
     // Navigation
     'nav.home': 'Accueil',
     'nav.medias': 'Médias',
+    'nav.shows': 'Concerts',
 
     // Layout / titre du site
     'layout.siteTitle': 'Granit Mitoyen',
@@ -21,11 +22,20 @@ export const translations = {
     'medias.title': 'Médias',
     'medias.section.montfort': 'Concert Montfort',
     'medias.section.stPeran': 'Concert St Peran',
+
+    // Page concerts / shows
+    'shows.title': 'Concerts',
+    'shows.date': 'Date',
+    'shows.address': 'Lieu',
+    'shows.linkFacebook': 'Facebook',
+    'shows.linkInstagram': 'Instagram',
+    'shows.linkWeb': 'Site',
   },
   en: {
     // Navigation
     'nav.home': 'Home',
     'nav.medias': 'Media',
+    'nav.shows': 'Shows',
 
     // Layout / titre du site
     'layout.siteTitle': 'Granit Mitoyen',
@@ -39,6 +49,14 @@ export const translations = {
     'medias.title': 'Media',
     'medias.section.montfort': 'Montfort concert',
     'medias.section.stPeran': 'St Peran concert',
+
+    // Shows page
+    'shows.title': 'Shows',
+    'shows.date': 'Date',
+    'shows.address': 'Venue',
+    'shows.linkFacebook': 'Facebook',
+    'shows.linkInstagram': 'Instagram',
+    'shows.linkWeb': 'Website',
   },
 } as const;
 

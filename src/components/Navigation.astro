@@ -58,6 +58,12 @@ const isMedias =
   currentPath === '/medias/' ||
   currentPath === '/en/medias' ||
   currentPath === '/en/medias/';
+
+const isShows =
+  currentPath === '/shows' ||
+  currentPath === '/shows/' ||
+  currentPath === '/en/shows' ||
+  currentPath === '/en/shows/';
 ---
 
 <nav class="bg-gray-800 text-white p-4">
@@ -83,6 +89,15 @@ const isMedias =
         ]}
       >
         {t(locale, 'nav.medias')}
+      </a>
+      <a
+        href="/shows"
+        class:list={[
+          "hover:text-blue-300 transition-colors",
+          isShows && "text-blue-400 font-bold",
+        ]}
+      >
+        {t(locale, 'nav.shows')}
       </a>
     </div>
 

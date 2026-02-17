@@ -1,0 +1,63 @@
+---
+// Carte d’un concert : date, lieu, liens optionnels (Facebook, Instagram, web).
+// Les libellés des liens viennent de i18n selon la locale.
+import { t, type Locale } from '../i18n/dict';
+import type { Show } from '../data/shows';
+
+interface Props {
+  show: Show;
+  locale: Locale;
+}
+
+const { show, locale } = Astro.props;
+const hasLinks = show.links.facebook || show.links.instagram || show.links.web;
+---
+
+<article class="bg-white rounded-lg shadow-md p-5 border border-gray-100">
+  <p class="text-sm text-gray-500 mb-1">
+    {t(locale, 'shows.date')}
+  </p>
+  <p class="text-lg font-semibold text-gray-800 mb-2">
+    {show.dateLabel}
+  </p>
+  <p class="text-sm text-gray-500 mb-1">
+    {t(locale, 'shows.address')}
+  </p>
+  <p class="text-gray-800 mb-3">
+    {show.address}
+  </p>
+  {hasLinks && (
+    <div class="flex flex-wrap gap-3 pt-2 border-t border-gray-100">
+      {show.links.facebook && (
+        <a
+          href={show.links.facebook}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-blue-600 hover:text-blue-800 hover:underline text-sm"
+        >
+          {t(locale, 'shows.linkFacebook')}
+        </a>
+      )}
+      {show.links.instagram && (
+        <a
+          href={show.links.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-blue-600 hover:text-blue-800 hover:underline text-sm"
+        >
+          {t(locale, 'shows.linkInstagram')}
+        </a>
+      )}
+      {show.links.web && (
+        <a
+          href={show.links.web}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-blue-600 hover:text-blue-800 hover:underline text-sm"
+        >
+          {t(locale, 'shows.linkWeb')}
+        </a>
+      )}
+    </div>
+  )}
+</article>
