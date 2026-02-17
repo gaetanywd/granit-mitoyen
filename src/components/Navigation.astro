@@ -1,28 +1,115 @@
 ---
-// Composant de navigation réutilisable
+// Composant de navigation réutilisable.
+// Il gère :
+// - les liens du menu principal
+// - le sélecteur de langue (FR / EN) avec images drapeaux (public/interface).
+import { t, type Locale } from '../i18n/dict';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
 const currentPath = Astro.url.pathname;
+
+// Fonction utilitaire simple pour construire l'URL d'une page
+// dans une autre langue, en gardant les mêmes segments d'URL.
+function buildLocalePath(targetLocale: Locale): string {
+  // Normalisation de base (on enlève le "/" final sauf pour la racine).
+  let basePath = currentPath;
+  if (basePath !== '/' && basePath.endsWith('/')) {
+    basePath = basePath.slice(0, -1);
+  }
+
+  const isEnglishPath = basePath === '/en' || basePath.startsWith('/en/');
+
+  if (targetLocale === 'fr') {
+    // Pour le français, on enlève le préfixe /en si présent.
+    if (isEnglishPath) {
+      const withoutEn = basePath.replace(/^\/en/, '') || '/';
+      return withoutEn;
+    }
+    return basePath || '/';
+  }
+
+  // targetLocale === 'en'
+  if (isEnglishPath) {
+    return basePath || '/en';
+  }
+
+  // Pour l'anglais, on ajoute simplement le préfixe /en.
+  if (basePath === '/') {
+    return '/en/';
+  }
+
+  return `/en${basePath}`;
+}
+
+const frUrl = buildLocalePath('fr');
+const enUrl = buildLocalePath('en');
+
+const isHome =
+  currentPath === '/' ||
+  currentPath === '/en' ||
+  currentPath === '/en/';
+
+const isMedias =
+  currentPath === '/medias' ||
+  currentPath === '/medias/' ||
+  currentPath === '/en/medias' ||
+  currentPath === '/en/medias/';
 ---
 
 <nav class="bg-gray-800 text-white p-4">
-  <div class="container mx-auto flex gap-6">
-    <a 
-      href="/" 
-      class:list={[
-        "hover:text-blue-300 transition-colors",
-        currentPath === "/" && "text-blue-400 font-bold"
-      ]}
-    >
-      Home
-    </a>
-    <a 
-      href="/medias" 
-      class:list={[
-        "hover:text-blue-300 transition-colors",
-        currentPath === "/medias" && "text-blue-400 font-bold"
-      ]}
-    >
-      Médias
-    </a>
+  <div
+    class="container mx-auto flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+  >
+    <!-- Liens principaux -->
+    <div class="flex gap-6">
+      <a
+        href="/"
+        class:list={[
+          "hover:text-blue-300 transition-colors",
+          isHome && "text-blue-400 font-bold",
+        ]}
+      >
+        {t(locale, 'nav.home')}
+      </a>
+      <a
+        href="/medias"
+        class:list={[
+          "hover:text-blue-300 transition-colors",
+          isMedias && "text-blue-400 font-bold",
+        ]}
+      >
+        {t(locale, 'nav.medias')}
+      </a>
+    </div>
+
+    <!-- Sélecteur de langue avec images drapeaux (public/interface) -->
+    <div class="flex items-center gap-2 justify-start sm:justify-end">
+      <a
+        href={frUrl}
+        aria-label="Français"
+        class:list={[
+          "transition-opacity inline-block",
+          locale === 'fr' ? "opacity-100 ring-2 ring-blue-400 rounded" : "opacity-70 hover:opacity-100",
+        ]}
+      >
+        <img src="/interface/fr_flag.png" alt="" width="24" height="18" class="block rounded-sm" />
+      </a>
+      <span class="text-gray-500 w-px h-4 bg-gray-500" aria-hidden="true"></span>
+      <a
+        href={enUrl}
+        aria-label="English"
+        class:list={[
+          "transition-opacity inline-block",
+          locale === 'en' ? "opacity-100 ring-2 ring-blue-400 rounded" : "opacity-70 hover:opacity-100",
+        ]}
+      >
+        <img src="/interface/en_flag.png" alt="" width="24" height="18" class="block rounded-sm" />
+      </a>
+    </div>
   </div>
 </nav>
 

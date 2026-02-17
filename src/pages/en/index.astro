@@ -1,10 +1,11 @@
 ---
-// Page d'accueil
-// On utilise ici le petit système de traductions centralisé.
-import Layout from '../layouts/Layout.astro';
-import { t, type Locale } from '../i18n/dict';
+// Page d'accueil - version anglaise.
+// La langue réelle utilisée vient d'Astro.currentLocale (config i18n).
+// On réutilise le même système de traductions que pour la version FR.
+import Layout from '../../layouts/Layout.astro';
+import { t, type Locale } from '../../i18n/dict';
 
-const currentLocale = (Astro.currentLocale ?? 'fr') as Locale;
+const currentLocale = (Astro.currentLocale ?? 'en') as Locale;
 const pageTitle = `${t(currentLocale, 'home.title')} - ${t(currentLocale, 'layout.siteTitle')}`;
 ---
 
@@ -24,3 +25,4 @@ const pageTitle = `${t(currentLocale, 'home.title')} - ${t(currentLocale, 'layou
 		<img src="/images/groupe JM.jpg" alt="Groupe JM" class="w-full h-auto">
 	</div>
 </Layout>
+

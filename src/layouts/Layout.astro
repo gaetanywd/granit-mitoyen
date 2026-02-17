@@ -1,17 +1,25 @@
 ---
 // Layout principal - utilisé par toutes les pages
+// Ce composant gère aussi la langue courante (locale) pour le site.
 import Navigation from '../components/Navigation.astro';
 import "../styles/global.css";
+import { t, type Locale } from '../i18n/dict';
 
 interface Props {
+  // Titre de la page (optionnel).
+  // Si absent, on utilise un titre traduit par défaut.
   title?: string;
 }
 
-const { title = 'Granit Mitoyen' } = Astro.props;
+// Langue courante fournie par Astro (via la config i18n).
+const currentLocale = (Astro.currentLocale ?? 'fr') as Locale;
+
+// Titre à afficher dans l'onglet du navigateur.
+const { title = t(currentLocale, 'layout.siteTitle') } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang={currentLocale}>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -20,8 +28,10 @@ const { title = 'Granit Mitoyen' } = Astro.props;
     <title>{title}</title>
   </head>
   <body class="min-h-screen bg-gray-50">
-    <!-- Navigation commune à toutes les pages -->
-    <Navigation />
+    <!-- Navigation commune à toutes les pages.
+         On lui passe la locale pour qu'elle puisse afficher les bons textes
+         et le sélecteur de langue. -->
+    <Navigation locale={currentLocale} />
     
     <!-- Contenu de la page -->
     <main class="container mx-auto p-6">
