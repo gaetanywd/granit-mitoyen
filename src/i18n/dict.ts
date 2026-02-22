@@ -11,6 +11,7 @@ export const translations = {
     'nav.shows': 'Concerts',
     'nav.presentation': 'Présentation',
     'nav.killbirgahn': 'Killbirgahn',
+    'nav.shop': 'Boutique',
     'nav.contact': 'Contact',
 
     // Layout / titre du site
@@ -69,6 +70,7 @@ export const translations = {
     'nav.shows': 'Shows',
     'nav.presentation': 'About',
     'nav.killbirgahn': 'Killbirgahn',
+    'nav.shop': 'Shop',
     'nav.contact': 'Contact',
 
     // Layout / titre du site

@@ -82,6 +82,9 @@ const isContact =
   currentPath === '/contact/' ||
   currentPath === '/en/contact' ||
   currentPath === '/en/contact/';
+
+const shopUrl = import.meta.env.PUBLIC_BIGCARTEL_URL as string | undefined;
+const hasShop = Boolean(shopUrl?.startsWith('http'));
 ---
 
 <nav class="bg-gray-800 text-white p-4">
@@ -134,6 +137,16 @@ const isContact =
       >
         {t(locale, 'nav.killbirgahn')}
       </a>
+      {hasShop && (
+        <a
+          href={shopUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-blue-300 transition-colors"
+        >
+          {t(locale, 'nav.shop')}
+        </a>
+      )}
       <a
         href="/contact"
         class:list={[
