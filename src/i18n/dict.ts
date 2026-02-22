@@ -61,6 +61,12 @@ export const translations = {
     'contact.instagram': 'Instagram',
     'contact.youtube': 'YouTube',
     'contact.bandcamp': 'Bandcamp',
+    'contact.formLabel.name': 'Nom',
+    'contact.formLabel.email': 'Votre email',
+    'contact.formLabel.message': 'Message',
+    'contact.formSubmit': 'Envoyer',
+    'contact.formSuccess': 'Message envoyé. Nous vous recontacterons si besoin.',
+    'contact.formFailure': "L'envoi a échoué. Vous pouvez nous écrire à :",
   },
   en: {
     // Navigation
@@ -120,6 +126,12 @@ export const translations = {
     'contact.instagram': 'Instagram',
     'contact.youtube': 'YouTube',
     'contact.bandcamp': 'Bandcamp',
+    'contact.formLabel.name': 'Name',
+    'contact.formLabel.email': 'Your email',
+    'contact.formLabel.message': 'Message',
+    'contact.formSubmit': 'Send',
+    'contact.formSuccess': 'Message sent. We will get back to you if needed.',
+    'contact.formFailure': 'Submission failed. You can email us at:',
   },
 } as const;
 
