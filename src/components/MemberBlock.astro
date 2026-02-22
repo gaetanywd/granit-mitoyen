@@ -18,7 +18,6 @@ const loremText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed 
 ---
 
 <section class="flex flex-col gap-4 md:flex-row md:items-center md:gap-8 py-6 border-b border-gray-200 last:border-b-0">
-  <!-- Colonne image : ordre DOM = image en premier sur mobile ; sur desktop, order visuel selon imageOnLeft -->
   <div
     class:list={[
       'flex-shrink-0 w-full md:w-80',
@@ -31,7 +30,6 @@ const loremText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed 
       class="w-full h-auto rounded-lg object-cover max-h-96 md:max-h-none"
     />
   </div>
-  <!-- Colonne texte -->
   <div class:list={[!imageOnLeft && 'md:order-1']}>
     <h3 class="text-xl font-semibold text-gray-800 mb-1">{member.name}</h3>
     <p class="text-sm text-gray-500 mb-3">{t(locale, member.roleKey)}</p>

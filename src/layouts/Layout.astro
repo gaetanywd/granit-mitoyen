@@ -28,12 +28,8 @@ const { title = t(currentLocale, 'layout.siteTitle') } = Astro.props;
     <title>{title}</title>
   </head>
   <body class="min-h-screen bg-gray-50">
-    <!-- Navigation commune à toutes les pages.
-         On lui passe la locale pour qu'elle puisse afficher les bons textes
-         et le sélecteur de langue. -->
     <Navigation locale={currentLocale} />
-    
-    <!-- Contenu de la page -->
+
     <main class="container mx-auto p-6">
       <slot />
     </main>

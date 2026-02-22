@@ -14,7 +14,6 @@ const pageTitle = `${t(currentLocale, 'presentation.title')} - ${t(currentLocale
     {t(currentLocale, 'presentation.title')}
   </h1>
 
-  <!-- Section Présentation du groupe -->
   <section class="mb-12">
     <h2 class="text-2xl font-semibold mb-4">
       {t(currentLocale, 'presentation.groupHeading')}
@@ -22,7 +21,6 @@ const pageTitle = `${t(currentLocale, 'presentation.title')} - ${t(currentLocale
     <p class="text-gray-700 leading-relaxed mb-6 max-w-3xl">
       {t(currentLocale, 'presentation.intro')}
     </p>
-    <!-- Photo groupe horizontal -->
     <img
       src="/images/Granit Mitoyen members horizontal.jpg"
       alt="Granit Mitoyen"
@@ -30,7 +28,6 @@ const pageTitle = `${t(currentLocale, 'presentation.title')} - ${t(currentLocale
     />
   </section>
 
-  <!-- Blocs membres : image / lorem, alternance gauche-droite -->
   <div class="space-y-0">
     {members.map((member, index) => (
       <MemberBlock
@@ -41,7 +38,6 @@ const pageTitle = `${t(currentLocale, 'presentation.title')} - ${t(currentLocale
     ))}
   </div>
 
-  <!-- Photo groupe vertical en fin de page -->
   <div class="mt-12 flex justify-center">
     <img
       src="/images/Granit Mitoyen members vertical.jpg"
