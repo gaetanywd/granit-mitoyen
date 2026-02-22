@@ -76,6 +76,12 @@ const isKillbirgahn =
   currentPath === '/killbirgahn/' ||
   currentPath === '/en/killbirgahn' ||
   currentPath === '/en/killbirgahn/';
+
+const isContact =
+  currentPath === '/contact' ||
+  currentPath === '/contact/' ||
+  currentPath === '/en/contact' ||
+  currentPath === '/en/contact/';
 ---
 
 <nav class="bg-gray-800 text-white p-4">
@@ -128,6 +134,15 @@ const isKillbirgahn =
         ]}
       >
         {t(locale, 'nav.killbirgahn')}
+      </a>
+      <a
+        href="/contact"
+        class:list={[
+          "hover:text-blue-300 transition-colors",
+          isContact && "text-blue-400 font-bold",
+        ]}
+      >
+        {t(locale, 'nav.contact')}
       </a>
     </div>
 

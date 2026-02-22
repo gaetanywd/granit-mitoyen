@@ -1,0 +1,36 @@
+---
+// Contact page (EN).
+import Layout from '../../layouts/Layout.astro';
+import { contactLinks } from '../../data/contact';
+import { t, type Locale } from '../../i18n/dict';
+
+const currentLocale = (Astro.currentLocale ?? 'en') as Locale;
+const pageTitle = `${t(currentLocale, 'contact.title')} - ${t(currentLocale, 'layout.siteTitle')}`;
+---
+
+<Layout title={pageTitle}>
+  <h1 class="text-3xl font-bold mb-6">
+    {t(currentLocale, 'contact.title')}
+  </h1>
+
+  <ul class="space-y-3 max-w-xl">
+    {contactLinks.map((link) => (
+      <li>
+        {link.external ? (
+          <a
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-blue-600 hover:text-blue-800 hover:underline"
+          >
+            {t(currentLocale, link.labelKey)}
+          </a>
+        ) : (
+          <a href={link.url} class="text-blue-600 hover:text-blue-800 hover:underline">
+            {t(currentLocale, link.labelKey)} — granitmitoyen.band@gmail.com
+          </a>
+        )}
+      </li>
+    ))}
+  </ul>
+</Layout>

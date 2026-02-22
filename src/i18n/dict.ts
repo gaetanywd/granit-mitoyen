@@ -11,6 +11,7 @@ export const translations = {
     'nav.shows': 'Concerts',
     'nav.presentation': 'Présentation',
     'nav.killbirgahn': 'Killbirgahn',
+    'nav.contact': 'Contact',
 
     // Layout / titre du site
     'layout.siteTitle': 'Granit Mitoyen',
@@ -53,6 +54,13 @@ export const translations = {
     'killbirgahn.tease.scroll':
       "Un parchemin scellé, oublié au fond d'une bibliothèque interdite. Un sort de pluie de feu qui ne devait jamais quitter le papier. Certaines erreurs ne brûlent pas qu'une seule ville.",
     'killbirgahn.coverAlt': 'Lands Of Killbirgahn – pochette de l’album',
+    // Page contact
+    'contact.title': 'Contact',
+    'contact.email': 'E-mail',
+    'contact.facebook': 'Facebook',
+    'contact.instagram': 'Instagram',
+    'contact.youtube': 'YouTube',
+    'contact.bandcamp': 'Bandcamp',
   },
   en: {
     // Navigation
@@ -61,6 +69,7 @@ export const translations = {
     'nav.shows': 'Shows',
     'nav.presentation': 'About',
     'nav.killbirgahn': 'Killbirgahn',
+    'nav.contact': 'Contact',
 
     // Layout / titre du site
     'layout.siteTitle': 'Granit Mitoyen',
@@ -103,6 +112,14 @@ export const translations = {
     'killbirgahn.tease.scroll':
       'A sealed scroll, buried in a forbidden library. A rain-of-fire spell that was never meant to leave the page. Some mistakes burn far more than a single kingdom.',
     'killbirgahn.coverAlt': 'Lands Of Killbirgahn – album cover',
+
+    // Contact page
+    'contact.title': 'Contact',
+    'contact.email': 'Email',
+    'contact.facebook': 'Facebook',
+    'contact.instagram': 'Instagram',
+    'contact.youtube': 'YouTube',
+    'contact.bandcamp': 'Bandcamp',
   },
 } as const;
 
