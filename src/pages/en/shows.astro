@@ -29,18 +29,18 @@ const eventsSchema = shows.map((show) => ({
 ---
 
 <Layout title={meta.title} description={meta.description} structuredData={eventsSchema}>
-  <h1 class="text-3xl font-bold mb-6">
+  <h1 class="font-title text-3xl font-bold mb-6">
     {hero.title}
   </h1>
 
   {hero.subtitle && (
-    <p class="mb-6 text-gray-600 max-w-2xl">
+    <p class="font-subtitle mb-6 text-gray-600 max-w-2xl">
       {hero.subtitle}
     </p>
   )}
 
   {intro?.text && (
-    <p class="mb-6 text-gray-700 max-w-2xl">
+    <p class="font-body mb-6 text-gray-700 max-w-2xl">
       {intro.text}
     </p>
   )}

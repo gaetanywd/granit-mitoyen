@@ -9,23 +9,23 @@ const { meta, hero, intro } = content;
 ---
 
 <Layout title={meta.title} description={meta.description}>
-  <h1 class="text-3xl font-bold mb-6">
+  <h1 class="font-title text-3xl font-bold mb-6">
     {hero.title}
   </h1>
 
   {hero.subtitle && (
-    <p class="mb-4 text-gray-600 max-w-xl">
+    <p class="font-subtitle mb-4 text-gray-600 max-w-xl">
       {hero.subtitle}
     </p>
   )}
 
   {intro?.text && (
-    <p class="mb-6 text-gray-700 max-w-xl">
+    <p class="font-body mb-6 text-gray-700 max-w-xl">
       {intro.text}
     </p>
   )}
 
-  <p class="mb-4 max-w-xl">
+  <p class="font-body mb-4 max-w-xl">
     Email —{' '}
     <a href={`mailto:${CONTACT_EMAIL}`} class="text-blue-600 hover:text-blue-800 hover:underline">
       {CONTACT_EMAIL}
