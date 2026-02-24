@@ -61,10 +61,25 @@
   --color-dark: #181511;
   --color-white: #ffffff;
 
+  /* Couleurs maquettes : fond page, texte secondaire, bandeaux */
+  --color-page: #fff0e4;
+  --color-ink: #1a1a1a;
+  --color-muted: #555555;
+  --color-banner: #d2b9a0;
+
   /* Polices : Titre, Sous-titre, Corps */
   --font-title: "Brice boldcondensed", sans-serif;
   --font-subtitle: "Headline two", sans-serif;
   --font-body: "Glacial Indifference", sans-serif;
+}
+
+/* -----------------------------------------------------------------------------
+   Titre avec soulignement (trait noir sous h1/h2, comme sur les maquettes)
+   ----------------------------------------------------------------------------- */
+.title-underline {
+  border-bottom-width: 2px;
+  border-bottom-color: var(--color-dark);
+  padding-bottom: 0.25rem;
 }
 
 /* -----------------------------------------------------------------------------

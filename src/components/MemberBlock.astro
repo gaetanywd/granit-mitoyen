@@ -17,7 +17,7 @@ const { member, imageOnLeft, locale } = Astro.props;
 const loremText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.';
 ---
 
-<section class="flex flex-col gap-4 md:flex-row md:items-center md:gap-8 py-6 border-b border-gray-200 last:border-b-0">
+<section class="flex flex-col gap-4 md:flex-row md:items-center md:gap-8 py-6 border-b border-dark/20 last:border-b-0">
   <div
     class:list={[
       'flex-shrink-0 w-full md:w-80',
@@ -31,9 +31,9 @@ const loremText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed 
     />
   </div>
   <div class:list={[!imageOnLeft && 'md:order-1']}>
-    <h3 class="font-subtitle text-xl font-semibold text-gray-800 mb-1">{member.name}</h3>
-    <p class="font-body text-sm text-gray-500 mb-3">{t(locale, member.roleKey)}</p>
-    <p class="font-body text-gray-700 leading-relaxed">
+    <h3 class="font-subtitle text-xl font-semibold text-dark mb-1">{member.name}</h3>
+    <p class="font-body text-sm text-muted mb-3">{t(locale, member.roleKey)}</p>
+    <p class="font-body text-dark leading-relaxed">
       {loremText}
     </p>
   </div>

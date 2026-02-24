@@ -9,20 +9,20 @@ const { meta, hero, sections } = content;
 ---
 
 <Layout title={meta.title} description={meta.description}>
-  <h1 class="font-title text-3xl font-bold mb-2">
+  <h1 class="font-title text-dark text-3xl font-bold mb-2 title-underline inline-block">
     {hero.title}
   </h1>
   {hero.subtitle && (
-    <p class="font-subtitle text-gray-600 mb-6">
+    <p class="font-subtitle text-dark mb-6">
       {hero.subtitle}
     </p>
   )}
 
   <section class="mb-12">
-    <h2 class="font-subtitle text-2xl font-semibold mb-4">
+    <h2 class="font-subtitle text-dark text-2xl font-semibold mb-4 title-underline inline-block">
       {sections.group.heading}
     </h2>
-    <p class="font-body text-gray-700 leading-relaxed mb-6 max-w-3xl">
+    <p class="font-body text-dark leading-relaxed mb-6 max-w-3xl">
       {sections.group.text}
     </p>
     <img

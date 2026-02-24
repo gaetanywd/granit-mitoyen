@@ -8,25 +8,25 @@ const { meta, hero, intro } = content;
 ---
 
 <Layout title={meta.title} description={meta.description}>
-  <h1 class="font-title text-3xl font-bold mb-6">
+  <h1 class="font-title text-dark text-3xl font-bold mb-6 title-underline inline-block">
     {hero.title}
   </h1>
 
   {hero.subtitle && (
-    <p class="font-subtitle mb-4 text-gray-600 max-w-xl">
+    <p class="font-subtitle mb-4 text-dark max-w-xl">
       {hero.subtitle}
     </p>
   )}
 
   {intro?.text && (
-    <p class="font-body mb-6 text-gray-700 max-w-xl">
+    <p class="font-body mb-6 text-dark max-w-xl">
       {intro.text}
     </p>
   )}
 
-  <p class="font-body mb-4 max-w-xl">
+  <p class="font-body mb-4 max-w-xl text-dark">
     Email —{' '}
-    <a href={`mailto:${CONTACT_EMAIL}`} class="text-blue-600 hover:text-blue-800 hover:underline">
+    <a href={`mailto:${CONTACT_EMAIL}`} class="text-brand hover:underline">
       {CONTACT_EMAIL}
     </a>
   </p>
@@ -38,7 +38,7 @@ const { meta, hero, intro } = content;
           href={link.url}
           target="_blank"
           rel="noopener noreferrer"
-          class="text-blue-600 hover:text-blue-800 hover:underline"
+          class="text-brand hover:underline"
         >
           {link.type.charAt(0).toUpperCase() + link.type.slice(1)}
         </a>

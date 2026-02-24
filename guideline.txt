@@ -1,0 +1,39 @@
+Synthèse des maquettes
+
+
+
+
+
+Fond général: fond pêche/beige clair (#FFF0E4, #FFEDDE, #F7E0D3).
+
+
+
+Texte sur fond clair: noir ou gris très foncé (#000000, #1A1A1A, #2C2C2C, #333333).
+
+
+
+Titres: noir avec un soulignement (trait fin noir sous le titre).
+
+
+
+Bannières de section: soit bandeau marron/terre (#DCC6B2), soit bandeau sombre (#222222) avec texte blanc.
+
+
+
+Accueil: panneau orange vif (#FF8C42 / proche de orange), barre contact sombre (#1E1E1E) avec texte blanc.
+
+
+
+Killbirgahn: colonne “Titres phares” fond sombre (#1D1D1D), titres en orange.
+
+
+
+Médias: titres vidéo en violet (proche de accent #8b6cd5), texte secondaire gris (#555555).
+
+
+
+Contact: boutons/blocs sombres avec texte blanc.
+
+
+
+Concerts: texte blanc sur fond photo sombre.

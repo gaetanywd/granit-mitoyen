@@ -8,12 +8,12 @@ const { meta, hero, sections } = content;
 ---
 
 <Layout title={meta.title} description={meta.description}>
-  <h1 class="font-title text-3xl font-bold mb-6">
+  <h1 class="font-title text-dark text-3xl font-bold mb-6 title-underline inline-block">
     {hero.title}
   </h1>
 
   {hero.subtitle && (
-    <p class="font-subtitle mb-8 text-gray-600 max-w-2xl">
+    <p class="font-subtitle mb-8 text-dark max-w-2xl">
       {hero.subtitle}
     </p>
   )}
@@ -31,9 +31,11 @@ const { meta, hero, sections } = content;
     </div>
   </div>
 
-  <h2 class="font-subtitle text-2xl font-semibold mb-4 mt-8">
-    {sections.montfort.heading}
-  </h2>
+  <div class="bg-dark text-white py-3 px-4 mt-8 mb-4">
+    <h2 class="font-subtitle text-2xl font-semibold">
+      {sections.montfort.heading}
+    </h2>
+  </div>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     <ImageCard 
       src="/concerts/montfort/Montfort 1.jpg"
@@ -52,9 +54,11 @@ const { meta, hero, sections } = content;
     />
   </div>
 
-  <h2 class="font-subtitle text-2xl font-semibold mb-4 mt-12">
-    {sections.stPeran.heading}
-  </h2>
+  <div class="bg-dark text-white py-3 px-4 mt-12 mb-4">
+    <h2 class="font-subtitle text-2xl font-semibold">
+      {sections.stPeran.heading}
+    </h2>
+  </div>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     <ImageCard 
       src="/concerts/st peran/St peran 1.jpg"
