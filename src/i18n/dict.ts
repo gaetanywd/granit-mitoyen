@@ -16,6 +16,8 @@ export const translations = {
 
     // Layout / titre du site
     'layout.siteTitle': 'Granit Mitoyen',
+    'layout.defaultDescription':
+      "Site officiel de Granit Mitoyen, groupe de stoner metal basé à Rennes en Bretagne. Concerts, album Kill Birgahn, vidéos et contact.",
 
     // Page d'accueil
     'home.title': 'Granit Mitoyen',
@@ -75,6 +77,8 @@ export const translations = {
 
     // Layout / titre du site
     'layout.siteTitle': 'Granit Mitoyen',
+    'layout.defaultDescription':
+      'Official website of Granit Mitoyen, a stoner metal band from Rennes, Brittany (France). Shows, Kill Birgahn album, videos and contact.',
 
     // Home page
     'home.title': 'Granit Mitoyen',

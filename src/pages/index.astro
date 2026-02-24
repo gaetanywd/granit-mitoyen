@@ -1,26 +1,53 @@
 ---
-// Page d'accueil
-// On utilise ici le petit système de traductions centralisé.
+// Page d'accueil FR
+// Le texte affiché vient d'un fichier JSON de contenu à la racine du projet.
 import Layout from '../layouts/Layout.astro';
-import { t, type Locale } from '../i18n/dict';
+import home from '../../content/home.fr.json';
 
-const currentLocale = (Astro.currentLocale ?? 'fr') as Locale;
-const pageTitle = `${t(currentLocale, 'home.title')} - ${t(currentLocale, 'layout.siteTitle')}`;
+const { meta, hero, sections } = home;
 ---
 
-<Layout title={pageTitle}>
+<Layout title={meta.title} description={meta.description}>
 	<h1 class="text-3xl font-bold text-center mb-8">
-		{t(currentLocale, 'home.title')}
+		{hero.title}
 	</h1>
+
 	<div class="max-w-2xl mx-auto text-center space-y-4">
 		<div class="text-xl text-gray-700">
-			{t(currentLocale, 'home.subtitle.line1')}
-		</div>
-		<div class="text-xl text-gray-700">
-			{t(currentLocale, 'home.subtitle.line2')}
+			{hero.subtitle}
 		</div>
 	</div>
-	<div class="max-w-5xl mx-auto mt-5">
-		<img src="/images/groupe JM.jpg" alt="Groupe JM" class="w-full h-auto">
+
+	<section class="max-w-3xl mx-auto mt-10 space-y-8 text-left">
+		<div>
+			<h2 class="text-2xl font-semibold mb-3">
+				{sections.about.title}
+			</h2>
+			<p class="text-gray-700">
+				{sections.about.text}
+			</p>
+		</div>
+
+		<div>
+			<h2 class="text-2xl font-semibold mb-3">
+				{sections.albumHighlight.title}
+			</h2>
+			<p class="text-gray-700">
+				{sections.albumHighlight.text}
+			</p>
+		</div>
+
+		<div>
+			<h2 class="text-2xl font-semibold mb-3">
+				{sections.showsHighlight.title}
+			</h2>
+			<p class="text-gray-700">
+				{sections.showsHighlight.text}
+			</p>
+		</div>
+	</section>
+
+	<div class="max-w-5xl mx-auto mt-10">
+		<img src="/images/groupe JM.jpg" alt="Groupe JM" class="w-full h-auto" />
 	</div>
 </Layout>

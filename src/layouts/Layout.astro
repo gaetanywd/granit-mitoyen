@@ -9,13 +9,28 @@ interface Props {
   // Titre de la page (optionnel).
   // Si absent, on utilise un titre traduit par défaut.
   title?: string;
+  // Description SEO de la page (optionnelle).
+  // Si absente, on utilise une description courte par défaut.
+  description?: string;
 }
 
 // Langue courante fournie par Astro (via la config i18n).
 const currentLocale = (Astro.currentLocale ?? 'fr') as Locale;
 
-// Titre à afficher dans l'onglet du navigateur.
-const { title = t(currentLocale, 'layout.siteTitle') } = Astro.props;
+// Récupération des props avec valeurs par défaut.
+// - title : utilisé pour l'onglet du navigateur.
+// - description : utilisé pour la balise meta description.
+const {
+  title = t(currentLocale, 'layout.siteTitle'),
+  description = t(currentLocale, 'layout.defaultDescription'),
+} = Astro.props;
+
+// Domaine canonique du site, lu depuis les variables d'environnement publiques.
+// On fournit une valeur par défaut pour le développement local.
+const siteUrl = import.meta.env.PUBLIC_SITE_URL ?? 'https://granitmitoyen.com';
+
+// URL canonique complète de la page courante (domaine + chemin).
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
 ---
 
 <!DOCTYPE html>
@@ -25,6 +40,8 @@ const { title = t(currentLocale, 'layout.siteTitle') } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
     <title>{title}</title>
   </head>
   <body class="min-h-screen bg-gray-50">
