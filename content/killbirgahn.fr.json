@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "title": "Kill Birgahn - Univers dark fantasy de Granit Mitoyen",
+    "description": "Explorez Kill Birgahn, le monde dark fantasy imaginé par Granit Mitoyen : Asel, Samaël et le parchemin de Fire Rain."
+  },
+  "hero": {
+    "title": "Killbirgahn",
+    "subtitle": "Un monde de dark fantasy en sept chapitres"
+  },
+  "cover": {
+    "alt": "Lands Of Killbirgahn – pochette de l’album"
+  },
+  "sections": {
+    "intro": {
+      "text": "Killbirgahn est un monde de dark fantasy où dieux et forces plus anciennes se jouent des mortels. L'album « Lands Of Killbirgahn » raconte une tragédie sans héros : peur, erreur et équilibre fragile."
+    },
+    "chapters": [
+      {
+        "id": "asel",
+        "title": "Asel",
+        "teaser": "Sur la glace, une femme entend des voix qui ne viennent ni du vent ni des vivants. Asel ne sait pas encore qu'elle sera au centre d'un conflit qui dépasse les dieux eux-mêmes."
+      },
+      {
+        "id": "samael",
+        "title": "Samaël",
+        "teaser": "Dans une cité blanche, un jeune apprenti mage est laissé seul face à une menace qu'il n'aurait jamais dû affronter. La peur et l'urgence le poussent vers un choix dont on ne revient pas."
+      },
+      {
+        "id": "scroll",
+        "title": "Scroll of Fire Rain",
+        "teaser": "Un parchemin scellé, oublié au fond d'une bibliothèque interdite. Un sort de pluie de feu qui ne devait jamais quitter le papier. Certaines erreurs ne brûlent pas qu'une seule ville."
+      }
+    ]
+  }
+}

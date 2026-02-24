@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "title": "Granit Mitoyen - Présentation du groupe de stoner metal",
+    "description": "Découvrez Granit Mitoyen, groupe de stoner metal originaire de Rennes : histoire du groupe, influences et membres."
+  },
+  "hero": {
+    "title": "Présentation",
+    "subtitle": "Un groupe de stoner metal né à Rennes"
+  },
+  "sections": {
+    "group": {
+      "heading": "Présentation du groupe",
+      "text": "Groupe indépendant originaire de Rennes, Granit Mitoyen est né en 2022 avec un premier chanteur. C'est en mai 2024 que Yann, Vanessa et Gaétan trouvent la voix qui affirme le style musical du groupe : Yoann. Influencés par des groupes comme Kyuss, 1000mods, Black Sabbath mais aussi d'autres univers musicaux, les compositions naviguent entre riffs lourds, passages psychédéliques et touches metal pour faire naître un stoner original. Composé de quatre membres — Yoann au chant, Yann à la guitare, Vanessa à la basse et Gaétan à la batterie — le groupe vous plonge dans un univers de dark fantasy porté par un son granitique."
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "title": "Kill Birgahn - Dark fantasy universe by Granit Mitoyen",
+    "description": "Step into Kill Birgahn, the dark fantasy world created by Granit Mitoyen: Asel, Samael and the Fire Rain scroll."
+  },
+  "hero": {
+    "title": "Killbirgahn",
+    "subtitle": "A dark fantasy world in seven chapters"
+  },
+  "cover": {
+    "alt": "Lands Of Killbirgahn – album cover"
+  },
+  "sections": {
+    "intro": {
+      "text": "Killbirgahn is a dark fantasy world where gods and ancient forces play with mortal lives. The album “Lands Of Killbirgahn” unfolds like a tragedy without heroes: fear, mistakes and a fragile balance."
+    },
+    "chapters": [
+      {
+        "id": "asel",
+        "title": "Asel",
+        "teaser": "Out on the ice, a woman hears voices that belong neither to the wind nor to the living. Asel has no idea yet that she will stand at the center of a conflict that even the gods cannot control."
+      },
+      {
+        "id": "samael",
+        "title": "Samael",
+        "teaser": "In a white city, a young apprentice mage is left alone to face a threat he was never meant to confront. Fear and urgency drive him toward a decision he cannot undo."
+      },
+      {
+        "id": "scroll",
+        "title": "Scroll of Fire Rain",
+        "teaser": "A sealed scroll, buried in a forbidden library. A rain-of-fire spell that was never meant to leave the page. Some mistakes burn far more than a single kingdom."
+      }
+    ]
+  }
+}
