@@ -1,1 +1,76 @@
 @import "tailwindcss";
+
+/* =============================================================================
+   Charte graphique Granit Mitoyen
+   - Couleurs et polices définies via @theme pour Tailwind 4.
+   - Les fichiers de polices doivent être dans public/fonts/ (servis en /fonts/).
+   ============================================================================= */
+
+/* -----------------------------------------------------------------------------
+   Polices : @font-face
+   À placer dans public/fonts/ pour être servies à /fonts/...
+   - Titre : Brice bold condensed (.otf)
+   - Sous-titre : Headline two (.ttf)
+   - Corps : Glacial Indifference (.woff2 ou .woff)
+   ----------------------------------------------------------------------------- */
+@font-face {
+  font-family: "Brice boldcondensed";
+  src: url("/fonts/Brice Bold Condensed.otf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Headline two";
+  src: url("/fonts/Headline Two HPLHS.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Glacial Indifference";
+  src: url("/fonts/GlacialIndifference-Regular.woff2") format("woff2"),
+       url("/fonts/GlacialIndifference-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Glacial Indifference";
+  src: url("/fonts/GlacialIndifference-Bold.woff2") format("woff2"),
+       url("/fonts/GlacialIndifference-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* -----------------------------------------------------------------------------
+   Thème Tailwind 4 : couleurs et familles de polices
+   Utilisation : bg-brand, text-cream, font-title, font-subtitle, font-body
+   ----------------------------------------------------------------------------- */
+@theme {
+  /* Couleurs charte */
+  --color-brand: #b9380c;
+  --color-brand-light: #ca6948;
+  --color-cream: #ffd4bc;
+  --color-orange: #ff914d;
+  --color-accent: #8b6cd5;
+  --color-dark: #181511;
+  --color-white: #ffffff;
+
+  /* Polices : Titre, Sous-titre, Corps */
+  --font-title: "Brice boldcondensed", sans-serif;
+  --font-subtitle: "Headline two", sans-serif;
+  --font-body: "Glacial Indifference", sans-serif;
+}
+
+/* -----------------------------------------------------------------------------
+   Défauts globaux : police de corps par défaut
+   (couleurs de fond/texte à appliquer au besoin sur les pages / composants)
+   ----------------------------------------------------------------------------- */
+body {
+  font-family: var(--font-body);
+}
