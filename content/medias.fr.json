@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "title": "Médias de Granit Mitoyen - Clips, live et photos",
+    "description": "Vidéos et photos de Granit Mitoyen, groupe de stoner metal de Rennes : clips, lives en Bretagne et images de concert."
+  },
+  "hero": {
+    "title": "Médias",
+    "subtitle": "Clips, live et images granitiques"
+  },
+  "sections": {
+    "video": {
+      "heading": "Clip / Live"
+    },
+    "montfort": {
+      "heading": "Montfort-sur-Meu"
+    },
+    "stPeran": {
+      "heading": "Saint-Péran"
+    }
+  }
+}

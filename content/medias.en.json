@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "title": "Granit Mitoyen media - Clips, live and photos",
+    "description": "Videos and photos of Granit Mitoyen, a stoner metal band from Rennes: live sessions in Brittany, concert shots and visuals."
+  },
+  "hero": {
+    "title": "Media",
+    "subtitle": "Clips, live shows and heavy images"
+  },
+  "sections": {
+    "video": {
+      "heading": "Clip / Live"
+    },
+    "montfort": {
+      "heading": "Montfort-sur-Meu"
+    },
+    "stPeran": {
+      "heading": "Saint-Péran"
+    }
+  }
+}

@@ -10,6 +10,8 @@ export interface ShowLinks {
 export interface Show {
   /** Libellé d’affichage de la date (ex. "5 octobre 2025"). */
   dateLabel: string;
+  /** Date ISO (YYYY-MM-DD) pour SEO et données structurées. */
+  dateIso: string;
   /** Lieu + ville (ex. "La Fontaine de St-Péran", "Jardin Modern, Rennes"). */
   address: string;
   /** Liens optionnels vers événement / page. */
@@ -20,6 +22,7 @@ export interface Show {
 export const shows: Show[] = [
   {
     dateLabel: '5 octobre 2025',
+    dateIso: '2025-10-05',
     address: 'La Fontaine de St-Péran',
     links: {
       facebook: 'https://www.facebook.com/events/970912191460728',
@@ -27,6 +30,7 @@ export const shows: Show[] = [
   },
   {
     dateLabel: '9 avril 2025',
+    dateIso: '2025-04-09',
     address: 'Jardin Moderne, Rennes',
     links: {},
   },

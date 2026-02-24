@@ -1,21 +1,31 @@
 ---
-// Contact page (EN) : email + social links only. No form.
+// Contact page (EN) : main content loaded from an editable JSON file. No form.
 import Layout from '../../layouts/Layout.astro';
 import { contactLinks, CONTACT_EMAIL } from '../../data/contact';
-import { t, type Locale } from '../../i18n/dict';
+import content from '../../../content/contact.en.json';
 
-const currentLocale = (Astro.currentLocale ?? 'en') as Locale;
-const pageTitle = `${t(currentLocale, 'contact.title')} - ${t(currentLocale, 'layout.siteTitle')}`;
+const { meta, hero, intro } = content;
 ---
 
-<Layout title={pageTitle}>
+<Layout title={meta.title} description={meta.description}>
   <h1 class="text-3xl font-bold mb-6">
-    {t(currentLocale, 'contact.title')}
+    {hero.title}
   </h1>
 
+  {hero.subtitle && (
+    <p class="mb-4 text-gray-600 max-w-xl">
+      {hero.subtitle}
+    </p>
+  )}
+
+  {intro?.text && (
+    <p class="mb-6 text-gray-700 max-w-xl">
+      {intro.text}
+    </p>
+  )}
+
   <p class="mb-4 max-w-xl">
-    {t(currentLocale, 'contact.email')}
-    {' — '}
+    Email —{' '}
     <a href={`mailto:${CONTACT_EMAIL}`} class="text-blue-600 hover:text-blue-800 hover:underline">
       {CONTACT_EMAIL}
     </a>
@@ -30,7 +40,7 @@ const pageTitle = `${t(currentLocale, 'contact.title')} - ${t(currentLocale, 'la
           rel="noopener noreferrer"
           class="text-blue-600 hover:text-blue-800 hover:underline"
         >
-          {t(currentLocale, link.labelKey)}
+          {link.type.charAt(0).toUpperCase() + link.type.slice(1)}
         </a>
       </li>
     ))}

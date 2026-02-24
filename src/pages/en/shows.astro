@@ -1,22 +1,53 @@
 ---
-// Page Shows — version anglaise (même contenu, locale EN).
+// Page Shows — version anglaise avec contenu éditable et données structurées.
 import Layout from '../../layouts/Layout.astro';
 import ShowCard from '../../components/ShowCard.astro';
 import { shows } from '../../data/shows';
-import { t, type Locale } from '../../i18n/dict';
+import content from '../../../content/shows.en.json';
 
-const currentLocale = (Astro.currentLocale ?? 'en') as Locale;
-const pageTitle = `${t(currentLocale, 'shows.title')} - ${t(currentLocale, 'layout.siteTitle')}`;
+const { meta, hero, intro } = content;
+
+const siteUrl = import.meta.env.PUBLIC_SITE_URL ?? 'https://granitmitoyen.com';
+
+const eventsSchema = shows.map((show) => ({
+  '@context': 'https://schema.org',
+  '@type': 'MusicEvent',
+  name: `Granit Mitoyen - show`,
+  startDate: show.dateIso,
+  location: {
+    '@type': 'Place',
+    name: show.address,
+    address: show.address,
+  },
+  performer: {
+    '@type': 'MusicGroup',
+    name: 'Granit Mitoyen',
+  },
+  eventStatus: 'https://schema.org/EventScheduled',
+  url: new URL(Astro.url.pathname, siteUrl).toString(),
+}));
 ---
 
-<Layout title={pageTitle}>
+<Layout title={meta.title} description={meta.description} structuredData={eventsSchema}>
   <h1 class="text-3xl font-bold mb-6">
-    {t(currentLocale, 'shows.title')}
+    {hero.title}
   </h1>
+
+  {hero.subtitle && (
+    <p class="mb-6 text-gray-600 max-w-2xl">
+      {hero.subtitle}
+    </p>
+  )}
+
+  {intro?.text && (
+    <p class="mb-6 text-gray-700 max-w-2xl">
+      {intro.text}
+    </p>
+  )}
 
   <div class="space-y-4 max-w-2xl">
     {shows.map((show) => (
-      <ShowCard show={show} locale={currentLocale} />
+      <ShowCard show={show} locale="en" />
     ))}
   </div>
 </Layout>

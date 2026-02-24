@@ -1,9 +1,12 @@
 ---
-// Layout principal - utilisé par toutes les pages
-// Ce composant gère aussi la langue courante (locale) pour le site.
+// Layout principal - utilisé par toutes les pages.
+// Il centralise la langue courante, les balises SEO, les liens hreflang
+// et les principales données structurées.
 import Navigation from '../components/Navigation.astro';
 import "../styles/global.css";
 import { t, type Locale } from '../i18n/dict';
+import siteFr from '../../content/site.fr.json';
+import siteEn from '../../content/site.en.json';
 
 interface Props {
   // Titre de la page (optionnel).
@@ -12,6 +15,8 @@ interface Props {
   // Description SEO de la page (optionnelle).
   // Si absente, on utilise une description courte par défaut.
   description?: string;
+  // Données structurées additionnelles à injecter en JSON-LD.
+  structuredData?: unknown[];
 }
 
 // Langue courante fournie par Astro (via la config i18n).
@@ -20,9 +25,11 @@ const currentLocale = (Astro.currentLocale ?? 'fr') as Locale;
 // Récupération des props avec valeurs par défaut.
 // - title : utilisé pour l'onglet du navigateur.
 // - description : utilisé pour la balise meta description.
+// - structuredData : permet aux pages d'ajouter leur propre JSON-LD.
 const {
   title = t(currentLocale, 'layout.siteTitle'),
   description = t(currentLocale, 'layout.defaultDescription'),
+  structuredData = [],
 } = Astro.props;
 
 // Domaine canonique du site, lu depuis les variables d'environnement publiques.
@@ -30,7 +37,55 @@ const {
 const siteUrl = import.meta.env.PUBLIC_SITE_URL ?? 'https://granitmitoyen.com';
 
 // URL canonique complète de la page courante (domaine + chemin).
-const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
+const pathname = Astro.url.pathname;
+const canonicalUrl = new URL(pathname, siteUrl).toString();
+
+// Chemins alternatifs FR/EN pour les balises hreflang.
+const frPath = pathname.startsWith('/en/')
+  ? pathname.slice(3) || '/'
+  : pathname || '/';
+
+const enPath = pathname.startsWith('/en/')
+  ? pathname
+  : pathname === '/'
+    ? '/en/'
+    : `/en${pathname}`;
+
+const alternateLinks = [
+  { hrefLang: 'fr', href: new URL(frPath, siteUrl).toString() },
+  { hrefLang: 'en', href: new URL(enPath, siteUrl).toString() },
+  { hrefLang: 'x-default', href: new URL('/', siteUrl).toString() },
+];
+
+// Données de base du site, selon la langue courante.
+const siteData = currentLocale === 'en' ? siteEn : siteFr;
+const siteName = siteData.siteName ?? 'Granit Mitoyen';
+
+// Image de partage par défaut pour Open Graph / Twitter.
+const defaultOgImage =
+  import.meta.env.PUBLIC_OG_IMAGE ?? '/images/Granit Mitoyen - Lands Of Killbirgahn cover.jpg';
+const ogImageUrl = new URL(defaultOgImage, siteUrl).toString();
+
+// Données structurées de base pour le groupe.
+const musicGroupSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'MusicGroup',
+  name: siteName,
+  genre: 'Stoner Metal',
+  url: siteUrl,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: siteData.city,
+    addressRegion: siteData.region,
+    addressCountry: siteData.country,
+  },
+  sameAs: Object.values(siteData.links).filter(Boolean),
+};
+
+const jsonLdItems = [musicGroupSchema, ...structuredData];
+
+// ID de mesure Google Analytics 4 (optionnel).
+const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 ---
 
 <!DOCTYPE html>
@@ -42,6 +97,41 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+    {alternateLinks.map((link) => (
+      <link rel="alternate" hreflang={link.hrefLang} href={link.href} />
+    ))}
+
+    <!-- Open Graph de base -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    {jsonLdItems.map((item) => (
+      <script type="application/ld+json">
+        {JSON.stringify(item)}
+      </script>
+    ))}
+
+    {gaId && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+        <script>
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${import.meta.env.PUBLIC_GA_MEASUREMENT_ID ?? ''}');`}
+        </script>
+      </>
+    )}
     <title>{title}</title>
   </head>
   <body class="min-h-screen bg-gray-50">

@@ -1,53 +1,72 @@
 ---
-// Killbirgahn page (EN): lore teaser without revealing everything.
+// Killbirgahn page (EN): content and teasers loaded from an editable JSON file.
 import Layout from '../../layouts/Layout.astro';
-import { t, type Locale } from '../../i18n/dict';
+import content from '../../../content/killbirgahn.en.json';
 
-const currentLocale = (Astro.currentLocale ?? 'en') as Locale;
-const pageTitle = `${t(currentLocale, 'killbirgahn.title')} - ${t(
-  currentLocale,
-  'layout.siteTitle',
-)}`;
+const { meta, hero, cover, sections } = content;
+
+const siteUrl = import.meta.env.PUBLIC_SITE_URL ?? 'https://granitmitoyen.com';
+
+const albumSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'MusicAlbum',
+  name: 'Lands Of Killbirgahn',
+  byArtist: {
+    '@type': 'MusicGroup',
+    name: 'Granit Mitoyen',
+  },
+  genre: 'Stoner Metal',
+  inLanguage: 'en',
+  url: new URL(Astro.url.pathname, siteUrl).toString(),
+  track: [
+    { '@type': 'MusicRecording', position: 1, name: 'Asel' },
+    { '@type': 'MusicRecording', position: 2, name: '20 Days of Night' },
+    { '@type': 'MusicRecording', position: 3, name: 'The Journey' },
+    { '@type': 'MusicRecording', position: 4, name: 'Samael' },
+    { '@type': 'MusicRecording', position: 5, name: 'Fire Rain' },
+    { '@type': 'MusicRecording', position: 6, name: 'Psychedelic Dream' },
+    { '@type': 'MusicRecording', position: 7, name: 'Heavy Wolf' },
+  ],
+};
+
+const structuredData = [albumSchema];
 ---
 
-<Layout title={pageTitle}>
-  <h1 class="text-3xl font-bold mb-6">
-    {t(currentLocale, 'killbirgahn.title')}
+<Layout title={meta.title} description={meta.description} structuredData={structuredData}>
+  <h1 class="text-3xl font-bold mb-2">
+    {hero.title}
   </h1>
+  {hero.subtitle && (
+    <p class="text-gray-600 mb-6">
+      {hero.subtitle}
+    </p>
+  )}
 
   <section class="mb-10 max-w-3xl space-y-6">
     <p class="text-gray-700 leading-relaxed">
-      {t(currentLocale, 'killbirgahn.intro')}
+      {sections.intro.text}
     </p>
 
     <img
       src="/images/Granit Mitoyen - Lands Of Killbirgahn cover.jpg"
-      alt={t(currentLocale, 'killbirgahn.coverAlt')}
+      alt={cover.alt}
       class="w-full max-w-2xl rounded-lg shadow-md"
+      loading="lazy"
+      decoding="async"
     />
   </section>
 
   <section class="space-y-8 max-w-3xl">
-    <div>
-      <h2 class="text-2xl font-semibold mb-2">Asel</h2>
-      <p class="text-gray-700 leading-relaxed">
-        {t(currentLocale, 'killbirgahn.tease.asel')}
-      </p>
-    </div>
-
-    <div>
-      <h2 class="text-2xl font-semibold mb-2">Samael</h2>
-      <p class="text-gray-700 leading-relaxed">
-        {t(currentLocale, 'killbirgahn.tease.samael')}
-      </p>
-    </div>
-
-    <div>
-      <h2 class="text-2xl font-semibold mb-2">Scroll of Fire Rain</h2>
-      <p class="text-gray-700 leading-relaxed">
-        {t(currentLocale, 'killbirgahn.tease.scroll')}
-      </p>
-    </div>
+    {sections.chapters.map((chapter) => (
+      <div>
+        <h2 class="text-2xl font-semibold mb-2">
+          {chapter.title}
+        </h2>
+        <p class="text-gray-700 leading-relaxed">
+          {chapter.teaser}
+        </p>
+      </div>
+    ))}
   </section>
 </Layout>
 
