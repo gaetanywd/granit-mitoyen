@@ -1,8 +1,4 @@
 ---
-// Composant de navigation réutilisable.
-// Il gère :
-// - les liens du menu principal
-// - le sélecteur de langue (FR / EN) avec images drapeaux (public/interface).
 import { t, type Locale } from '../i18n/dict';
 
 interface Props {
@@ -12,10 +8,7 @@ interface Props {
 const { locale } = Astro.props;
 const currentPath = Astro.url.pathname;
 
-// Fonction utilitaire simple pour construire l'URL d'une page
-// dans une autre langue, en gardant les mêmes segments d'URL.
 function buildLocalePath(targetLocale: Locale): string {
-  // Normalisation de base (on enlève le "/" final sauf pour la racine).
   let basePath = currentPath;
   if (basePath !== '/' && basePath.endsWith('/')) {
     basePath = basePath.slice(0, -1);
@@ -24,7 +17,6 @@ function buildLocalePath(targetLocale: Locale): string {
   const isEnglishPath = basePath === '/en' || basePath.startsWith('/en/');
 
   if (targetLocale === 'fr') {
-    // Pour le français, on enlève le préfixe /en si présent.
     if (isEnglishPath) {
       const withoutEn = basePath.replace(/^\/en/, '') || '/';
       return withoutEn;
@@ -32,12 +24,10 @@ function buildLocalePath(targetLocale: Locale): string {
     return basePath || '/';
   }
 
-  // targetLocale === 'en'
   if (isEnglishPath) {
     return basePath || '/en';
   }
 
-  // Pour l'anglais, on ajoute simplement le préfixe /en.
   if (basePath === '/') {
     return '/en/';
   }
@@ -87,10 +77,19 @@ const shopUrl = import.meta.env.PUBLIC_BIGCARTEL_URL as string | undefined;
 const hasShop = Boolean(shopUrl?.startsWith('http'));
 ---
 
-<nav class="bg-dark text-white p-4">
+<div>
+  <a href="/">
+    <img src="/images/LOGO_2026_Black2.png" alt="Granit Mitoyen" class="h-60 m-auto my-5" />
+  </a>
+</div>
+
+<nav class="bg-dark text-white p-4 sticky top-0 z-10">
   <div
     class="container mx-auto flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
   >
+    <div class="flex gap-6">
+    </div>
+
     <div class="flex gap-6">
       <a
         href="/"

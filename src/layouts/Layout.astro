@@ -5,6 +5,7 @@
 import Navigation from '../components/Navigation.astro';
 import "../styles/global.css";
 import { t, type Locale } from '../i18n/dict';
+import { contactLinks, CONTACT_EMAIL } from '../data/contact';
 import siteFr from '../../content/site.fr.json';
 import siteEn from '../../content/site.en.json';
 
@@ -134,12 +135,39 @@ gtag('config', '${import.meta.env.PUBLIC_GA_MEASUREMENT_ID ?? ''}');`}
     )}
     <title>{title}</title>
   </head>
-  <body class="min-h-screen bg-page">
+  <body class="min-h-screen bg-page flex flex-col">
     <Navigation locale={currentLocale} />
 
-    <main class="container mx-auto p-6">
+    <main class="container mx-auto p-6 flex-1">
       <slot />
     </main>
+
+    <footer class="mt-8 border-t border-dark/20 bg-dark text-cream">
+      <div class="container mx-auto px-6 py-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <p class="font-body text-sm">
+          © {new Date().getFullYear()} {siteName}
+        </p>
+
+        <nav class="flex flex-wrap items-center gap-4">
+          {contactLinks.map((link) => (
+            <a
+              href={link.url}
+              class="font-body text-sm hover:text-white underline-offset-4 hover:underline"
+              target={link.external ? '_blank' : undefined}
+              rel={link.external ? 'noopener noreferrer' : undefined}
+            >
+              {t(currentLocale, link.labelKey)}
+            </a>
+          ))}
+        </nav>
+
+        <p class="font-body text-sm">
+          <a href={`mailto:${CONTACT_EMAIL}`} class="hover:underline">
+            {t(currentLocale, 'contact.email')}: {CONTACT_EMAIL}
+          </a>
+        </p>
+      </div>
+    </footer>
   </body>
 </html>
 
