@@ -9,7 +9,13 @@ const { meta, hero, intro } = content;
 
 const siteUrl = import.meta.env.PUBLIC_SITE_URL ?? 'https://granitmitoyen.com';
 
-const eventsSchema = shows.map((show) => ({
+// Séparation automatique des concerts selon la date du jour (ISO YYYY-MM-DD).
+const todayIso = new Date().toISOString().slice(0, 10);
+const upcomingShows = shows.filter((show) => show.dateIso >= todayIso);
+const pastShows = shows.filter((show) => show.dateIso < todayIso);
+
+// Données structurées : on ne déclare que les concerts à venir comme événements programmés.
+const eventsSchema = upcomingShows.map((show) => ({
   '@context': 'https://schema.org',
   '@type': 'MusicEvent',
   name: `Granit Mitoyen - concert`,
@@ -33,21 +39,35 @@ const eventsSchema = shows.map((show) => ({
     {hero.title}
   </h1>
 
-  {hero.subtitle && (
-    <p class="font-subtitle mb-6 text-dark max-w-2xl">
-      {hero.subtitle}
-    </p>
-  )}
+  <section class="space-y-8 max-w-2xl">
+    <div>
+      <h2 class="font-subtitle text-dark text-2xl font-semibold mb-4">
+        Concerts à venir
+      </h2>
+      <div class="space-y-4">
+        {upcomingShows.length > 0 ? (
+          upcomingShows.map((show) => <ShowCard show={show} locale="fr" />)
+        ) : (
+          <p class="font-body text-dark text-sm italic">
+            Aucun concert à venir pour le moment.
+          </p>
+        )}
+      </div>
+    </div>
 
-  {intro?.text && (
-    <p class="font-body mb-6 text-dark max-w-2xl">
-      {intro.text}
-    </p>
-  )}
-
-  <div class="space-y-4 max-w-2xl">
-    {shows.map((show) => (
-      <ShowCard show={show} locale="fr" />
-    ))}
-  </div>
+    <div>
+      <h2 class="font-subtitle text-dark text-2xl font-semibold mb-4">
+        Concerts passés
+      </h2>
+      <div class="space-y-4">
+        {pastShows.length > 0 ? (
+          pastShows.map((show) => <ShowCard show={show} locale="fr" />)
+        ) : (
+          <p class="font-body text-dark text-sm italic">
+            Aucun concert passé pour le moment.
+          </p>
+        )}
+      </div>
+    </div>
+  </section>
 </Layout>

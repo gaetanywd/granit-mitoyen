@@ -16,6 +16,10 @@ export interface Show {
   address: string;
   /** Liens optionnels vers événement / page. */
   links: ShowLinks;
+  /** Lien principal mis en avant (billetterie, réservation, etc.). */
+  mainLink?: string;
+  /** Libellé du lien principal (ex. "Billetterie", "Réserver"). */
+  mainLinkLabel?: string;
 }
 
 // Liste des concerts passés, du plus récent au plus ancien.
@@ -29,9 +33,11 @@ export const shows: Show[] = [
     },
   },
   {
-    dateLabel: '9 avril 2025',
-    dateIso: '2025-04-09',
+    dateLabel: '9 avril 2026',
+    dateIso: '2026-04-09',
     address: 'Jardin Moderne, Rennes',
     links: {},
+    mainLink: 'https://www.helloasso.com/associations/granit-citoyen/evenements/granit-mitoyen-release-party-glam-dicinn-witchorious',
+    mainLinkLabel: 'Billetterie HelloAsso',
   },
 ];

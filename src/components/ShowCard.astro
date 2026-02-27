@@ -11,6 +11,7 @@ interface Props {
 
 const { show, locale } = Astro.props;
 const hasLinks = show.links.facebook || show.links.instagram || show.links.web;
+const hasMainLink = show.mainLink && show.mainLinkLabel;
 ---
 
 <article class="bg-white rounded-lg shadow-md p-5 border border-dark/10">
@@ -26,6 +27,18 @@ const hasLinks = show.links.facebook || show.links.instagram || show.links.web;
   <p class="font-body text-dark mb-3">
     {show.address}
   </p>
+  {hasMainLink && (
+    <div class="mb-3">
+      <a
+        href={show.mainLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center px-4 py-2 rounded-full bg-brand text-white text-sm font-semibold hover:bg-brand/90"
+      >
+        {show.mainLinkLabel}
+      </a>
+    </div>
+  )}
   {hasLinks && (
     <div class="flex flex-wrap gap-3 pt-2 border-t border-dark/10">
       {show.links.facebook && (
