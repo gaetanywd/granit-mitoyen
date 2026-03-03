@@ -1,20 +1,62 @@
 // Liens de contact du groupe : email + réseaux. Les libellés sont en i18n (contact.email, contact.facebook, etc.).
 
-export type ContactType = 'facebook' | 'instagram' | 'youtube' | 'bandcamp';
+export type ContactType = 'facebook' | 'instagram' | 'youtube' | 'bandcamp' | 'presskit';
 
 export interface ContactLink {
   type: ContactType;
   url: string;
-  labelKey: 'contact.facebook' | 'contact.instagram' | 'contact.youtube' | 'contact.bandcamp';
+  labelKey:
+    | 'contact.facebook'
+    | 'contact.instagram'
+    | 'contact.youtube'
+    | 'contact.bandcamp'
+    | 'contact.presskit';
   external?: boolean;
 }
 
-export const contactLinks: ContactLink[] = [
-  { type: 'facebook', url: 'https://www.facebook.com/granit.mitoyen', labelKey: 'contact.facebook', external: true },
-  { type: 'instagram', url: 'https://www.instagram.com/granit.mitoyen/', labelKey: 'contact.instagram', external: true },
-  { type: 'youtube', url: 'https://www.youtube.com/@GranitMitoyen', labelKey: 'contact.youtube', external: true },
-  { type: 'bandcamp', url: 'https://granitmitoyen.bandcamp.com/', labelKey: 'contact.bandcamp', external: true },
+const PRESS_KIT_URL = import.meta.env.PUBLIC_PRESS_KIT_URL as string | undefined;
+
+const baseLinks: ContactLink[] = [
+  {
+    type: 'facebook',
+    url: 'https://www.facebook.com/granit.mitoyen',
+    labelKey: 'contact.facebook',
+    external: true,
+  },
+  {
+    type: 'instagram',
+    url: 'https://www.instagram.com/granit.mitoyen/',
+    labelKey: 'contact.instagram',
+    external: true,
+  },
+  {
+    type: 'youtube',
+    url: 'https://www.youtube.com/@GranitMitoyen',
+    labelKey: 'contact.youtube',
+    external: true,
+  },
+  {
+    type: 'bandcamp',
+    url: 'https://granitmitoyen.bandcamp.com/',
+    labelKey: 'contact.bandcamp',
+    external: true,
+  },
 ];
+
+const extraLinks: ContactLink[] = [];
+
+if (PRESS_KIT_URL && PRESS_KIT_URL.startsWith('http')) {
+  extraLinks.push({
+    type: 'presskit',
+    url: PRESS_KIT_URL,
+    labelKey: 'contact.presskit',
+    external: true,
+  });
+}
+
+export const contactLinks: ContactLink[] = [...baseLinks, ...extraLinks];
 
 /** Adresse email de contact affichée sur la page Contact. */
 export const CONTACT_EMAIL = 'granitmitoyen.band@gmail.com';
+
+export { PRESS_KIT_URL };

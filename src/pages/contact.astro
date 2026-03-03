@@ -3,6 +3,7 @@
 // Un captcha Cloudflare pourra être ajouté plus tard si besoin.
 import Layout from '../layouts/Layout.astro';
 import { contactLinks, CONTACT_EMAIL } from '../data/contact';
+import { t } from '../i18n/dict';
 import content from '../../content/contact.fr.json';
 
 const { meta, hero, intro } = content;
@@ -41,7 +42,7 @@ const { meta, hero, intro } = content;
           rel="noopener noreferrer"
           class="text-brand hover:underline"
         >
-          {link.type.charAt(0).toUpperCase() + link.type.slice(1)}
+          {t('fr', link.labelKey)}
         </a>
       </li>
     ))}
