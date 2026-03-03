@@ -1,0 +1,175 @@
+---
+// Page Discographie (FR) : présente l'album et les principaux liens d'écoute.
+import Layout from '../layouts/Layout.astro';
+
+// Liens d'écoute optionnels, configurables via les variables d'environnement publiques.
+const YOUTUBE_URL = import.meta.env.PUBLIC_KILLBIRGAHN_YOUTUBE_URL as string | undefined;
+const SOUNDCLOUD_URL = import.meta.env.PUBLIC_KILLBIRGAHN_SOUNDCLOUD_URL as string | undefined;
+const DEEZER_URL = import.meta.env.PUBLIC_KILLBIRGAHN_DEEZER_URL as string | undefined;
+
+const streamingLinks = [
+  { label: 'YouTube', url: YOUTUBE_URL },
+  { label: 'SoundCloud', url: SOUNDCLOUD_URL },
+  { label: 'Deezer', url: DEEZER_URL },
+].filter((link) => Boolean(link.url && link.url.startsWith('http')));
+
+const siteUrl = import.meta.env.PUBLIC_SITE_URL ?? 'https://granitmitoyen.com';
+
+// Données structurées centrées sur l'album.
+const albumSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'MusicAlbum',
+  name: 'Lands Of Killbirgahn',
+  byArtist: {
+    '@type': 'MusicGroup',
+    name: 'Granit Mitoyen',
+  },
+  genre: 'Stoner Metal',
+  inLanguage: 'fr',
+  url: new URL(Astro.url.pathname, siteUrl).toString(),
+  track: [
+    { '@type': 'MusicRecording', position: 1, name: 'Asel' },
+    { '@type': 'MusicRecording', position: 2, name: '20 Days of Night' },
+    { '@type': 'MusicRecording', position: 3, name: 'The Journey' },
+    { '@type': 'MusicRecording', position: 4, name: 'Samael' },
+    { '@type': 'MusicRecording', position: 5, name: 'Fire Rain' },
+    { '@type': 'MusicRecording', position: 6, name: 'Psychedelic Dream' },
+    { '@type': 'MusicRecording', position: 7, name: 'Heavy Wolf' },
+  ],
+  sameAs: streamingLinks.map((link) => link.url),
+};
+
+const structuredData = [albumSchema];
+
+const pageTitle = 'Discographie';
+const pageDescription =
+  "Lands Of Killbirgahn, album-concept de dark fantasy apocalyptique de Granit Mitoyen : une histoire sans héros, entre glace, nuit et feu.";
+---
+
+<Layout title={pageTitle} description={pageDescription} structuredData={structuredData}>
+  <h1 class="font-title text-dark text-3xl font-bold mb-6 title-underline inline-block">
+    {pageTitle}
+  </h1>
+
+  <section class="flex flex-col gap-8 md:flex-row md:items-start md:gap-10 mb-10">
+    <div class="flex-1 space-y-4">
+      <h2 class="font-subtitle text-dark text-2xl font-semibold">
+        Lands Of Killbirgahn
+      </h2>
+      <p class="font-body text-dark leading-relaxed">
+        Killbirgahn est un album-concept de dark fantasy apocalyptique où la glace, la nuit et le
+        feu accompagnent la chute d’un monde condamné. Manipulation divine, erreurs humaines et
+        forces anciennes s’y affrontent dans un récit brutal, sans héros ni rédemption.
+        L’équilibre ne se rétablit jamais sans destruction.
+      </p>
+    </div>
+
+    <div class="flex-1 max-w-md mx-auto md:mx-0 space-y-4">
+      <img
+        src="/images/Granit Mitoyen - Lands Of Killbirgahn cover.jpg"
+        alt="Lands Of Killbirgahn – pochette de l’album"
+        class="w-full rounded-lg shadow-md"
+        loading="lazy"
+        decoding="async"
+      />
+
+      {streamingLinks.length > 0 && (
+        <div class="mt-4">
+          <h3 class="font-subtitle text-dark text-xl font-semibold mb-3">
+            Écouter l’album
+          </h3>
+          <div class="flex flex-wrap gap-3">
+            {streamingLinks.map((link) => (
+              <a
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center px-4 py-2 rounded-md bg-dark text-cream font-body text-sm hover:bg-blue-800 transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <section class="space-y-6 max-w-3xl">
+    <h2 class="font-subtitle text-dark text-2xl font-semibold mb-2 title-underline inline-block">
+      Histoire piste par piste
+    </h2>
+
+    <article class="space-y-2">
+      <h3 class="font-subtitle text-dark text-xl font-semibold">
+        Asel
+      </h3>
+      <p class="font-body text-dark leading-relaxed">
+        Sur la banquise, Asel entend des voix tandis que la lumière disparaît. La nuit s’installe,
+        et son destin se referme inexorablement.
+      </p>
+    </article>
+
+    <article class="space-y-2">
+      <h3 class="font-subtitle text-dark text-xl font-semibold">
+        20 Days of Night
+      </h3>
+      <p class="font-body text-dark leading-relaxed">
+        Vingt jours sans soleil plongent Asel dans une errance glaciale. Les morts se lèvent,
+        l’esprit se brise, et l’humanité s’efface dans l’obscurité.
+      </p>
+    </article>
+
+    <article class="space-y-2">
+      <h3 class="font-subtitle text-dark text-xl font-semibold">
+        The Journey
+      </h3>
+      <p class="font-body text-dark leading-relaxed">
+        Revenue d’entre les morts, Asel est forcée de marcher vers la guerre. Esclave des dieux et
+        de l’enfer, elle n’a plus de retour possible.
+      </p>
+    </article>
+
+    <article class="space-y-2">
+      <h3 class="font-subtitle text-dark text-xl font-semibold">
+        Samael
+      </h3>
+      <p class="font-body text-dark leading-relaxed">
+        Seul et terrifié, un jeune apprenti mage fait face à une menace qu’il ne comprend pas. Sa
+        peur le pousse à commettre une erreur irréversible.
+      </p>
+    </article>
+
+    <article class="space-y-2">
+      <h3 class="font-subtitle text-dark text-xl font-semibold">
+        Fire Rain
+      </h3>
+      <p class="font-body text-dark leading-relaxed">
+        Un sort interdit est lancé. Le ciel brûle, le monde s’embrase, et l’apocalypse est
+        déclenchée.
+      </p>
+    </article>
+
+    <article class="space-y-2">
+      <h3 class="font-subtitle text-dark text-xl font-semibold">
+        Psychedelic Dream
+      </h3>
+      <p class="font-body text-dark leading-relaxed">
+        Fuyant le monde réel, le narrateur se réfugie dans un délire psychédélique où rêve et
+        réalité se confondent. Pouvoir et destruction deviennent le reflet déformé des travers de
+        la société.
+      </p>
+    </article>
+
+    <article class="space-y-2">
+      <h3 class="font-subtitle text-dark text-xl font-semibold">
+        Heavy Wolf
+      </h3>
+      <p class="font-body text-dark leading-relaxed">
+        Quand dieux et mortels échouent, une force ancestrale s’éveille. Le Heavy Wolf impose
+        l’ordre par la force, corrigeant un monde allé trop loin.
+      </p>
+    </article>
+  </section>
+</Layout>
+

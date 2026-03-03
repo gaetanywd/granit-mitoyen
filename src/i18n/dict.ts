@@ -11,6 +11,7 @@ export const translations = {
     'nav.shows': 'Concerts',
     'nav.presentation': 'Présentation',
     'nav.killbirgahn': 'Killbirgahn',
+    'nav.discography': 'Discographie',
     'nav.shop': 'Boutique',
     'nav.contact': 'Contact',
 
@@ -72,6 +73,7 @@ export const translations = {
     'nav.shows': 'Shows',
     'nav.presentation': 'About',
     'nav.killbirgahn': 'Killbirgahn',
+    'nav.discography': 'Discography',
     'nav.shop': 'Shop',
     'nav.contact': 'Contact',
 

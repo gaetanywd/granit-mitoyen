@@ -67,6 +67,12 @@ const isKillbirgahn =
   currentPath === '/en/killbirgahn' ||
   currentPath === '/en/killbirgahn/';
 
+const isDiscography =
+  currentPath === '/discographie' ||
+  currentPath === '/discographie/' ||
+  currentPath === '/en/discography' ||
+  currentPath === '/en/discography/';
+
 const isContact =
   currentPath === '/contact' ||
   currentPath === '/contact/' ||
@@ -142,6 +148,15 @@ const hasShop = Boolean(shopUrl?.startsWith('http'));
             ]}
           >
             {t(locale, 'nav.killbirgahn')}
+          </a>
+          <a
+            href="/discographie"
+            class:list={[
+              "hover:text-blue-300 transition-colors",
+              isDiscography && "text-blue-400 font-bold",
+            ]}
+          >
+            {t(locale, 'nav.discography')}
           </a>
           {hasShop && (
             <a
@@ -239,6 +254,15 @@ const hasShop = Boolean(shopUrl?.startsWith('http'));
         ]}
       >
         {t(locale, 'nav.killbirgahn')}
+      </a>
+      <a
+        href="/discographie"
+        class:list={[
+          "hover:text-blue-300 transition-colors",
+          isDiscography && "text-blue-400 font-bold",
+        ]}
+      >
+        {t(locale, 'nav.discography')}
       </a>
       {hasShop && (
         <a
