@@ -2,7 +2,7 @@
 // Page Contact : contenu principal chargé depuis un JSON éditable.
 // Un captcha Cloudflare pourra être ajouté plus tard si besoin.
 import Layout from '../layouts/Layout.astro';
-import { contactLinks, CONTACT_EMAIL } from '../data/contact';
+import { contactLinks, CONTACT_EMAIL, PRESS_KIT_URL } from '../data/contact';
 import { t } from '../i18n/dict';
 import content from '../../content/contact.fr.json';
 
@@ -24,6 +24,19 @@ const { meta, hero, intro } = content;
     <p class="font-body mb-6 text-dark max-w-xl">
       {intro.text}
     </p>
+  )}
+
+  {PRESS_KIT_URL && PRESS_KIT_URL.startsWith('http') && (
+    <div class="mb-6">
+      <a
+        href={PRESS_KIT_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center px-4 py-2 rounded-md bg-dark text-cream font-body hover:bg-blue-800 transition-colors"
+      >
+        {t('fr', 'contact.presskit')}
+      </a>
+    </div>
   )}
 
   <p class="font-body mb-4 max-w-xl text-dark">

@@ -65,7 +65,7 @@ export const translations = {
     'contact.instagram': 'Instagram',
     'contact.youtube': 'YouTube',
     'contact.bandcamp': 'Bandcamp',
-    'contact.presskit': 'Kit press',
+    'contact.presskit': 'Télécharger le kit press',
   },
   en: {
     // Navigation
@@ -129,7 +129,7 @@ export const translations = {
     'contact.instagram': 'Instagram',
     'contact.youtube': 'YouTube',
     'contact.bandcamp': 'Bandcamp',
-    'contact.presskit': 'Press kit',
+    'contact.presskit': 'Download the press kit',
   },
 } as const;
 

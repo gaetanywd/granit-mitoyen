@@ -1,6 +1,6 @@
 // Liens de contact du groupe : email + réseaux. Les libellés sont en i18n (contact.email, contact.facebook, etc.).
 
-export type ContactType = 'facebook' | 'instagram' | 'youtube' | 'bandcamp' | 'presskit';
+export type ContactType = 'facebook' | 'instagram' | 'youtube' | 'bandcamp';
 
 export interface ContactLink {
   type: ContactType;
@@ -9,8 +9,7 @@ export interface ContactLink {
     | 'contact.facebook'
     | 'contact.instagram'
     | 'contact.youtube'
-    | 'contact.bandcamp'
-    | 'contact.presskit';
+    | 'contact.bandcamp';
   external?: boolean;
 }
 
@@ -43,18 +42,7 @@ const baseLinks: ContactLink[] = [
   },
 ];
 
-const extraLinks: ContactLink[] = [];
-
-if (PRESS_KIT_URL && PRESS_KIT_URL.startsWith('http')) {
-  extraLinks.push({
-    type: 'presskit',
-    url: PRESS_KIT_URL,
-    labelKey: 'contact.presskit',
-    external: true,
-  });
-}
-
-export const contactLinks: ContactLink[] = [...baseLinks, ...extraLinks];
+export const contactLinks: ContactLink[] = baseLinks;
 
 /** Adresse email de contact affichée sur la page Contact. */
 export const CONTACT_EMAIL = 'granitmitoyen.band@gmail.com';
