@@ -33,9 +33,10 @@ const hasMainLink = show.mainLink && show.mainLinkLabel;
         href={show.mainLink}
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center px-4 py-2 rounded-full bg-brand text-white text-sm font-semibold hover:bg-brand/90"
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand text-white text-sm font-semibold hover:bg-brand/90"
       >
-        {show.mainLinkLabel}
+        <span>{show.mainLinkLabel}</span>
+        <i class="fa-solid fa-arrow-up-right-from-square text-xs" aria-hidden="true"></i>
       </a>
     </div>
   )}
@@ -46,9 +47,10 @@ const hasMainLink = show.mainLink && show.mainLinkLabel;
           href={show.links.facebook}
           target="_blank"
           rel="noopener noreferrer"
-          class="text-brand hover:underline text-sm"
+          class="text-brand hover:underline text-sm inline-flex items-center gap-1.5"
         >
-          {t(locale, 'shows.linkFacebook')}
+          <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+          <span>{t(locale, 'shows.linkFacebook')}</span>
         </a>
       )}
       {show.links.instagram && (
@@ -56,9 +58,10 @@ const hasMainLink = show.mainLink && show.mainLinkLabel;
           href={show.links.instagram}
           target="_blank"
           rel="noopener noreferrer"
-          class="text-brand hover:underline text-sm"
+          class="text-brand hover:underline text-sm inline-flex items-center gap-1.5"
         >
-          {t(locale, 'shows.linkInstagram')}
+          <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+          <span>{t(locale, 'shows.linkInstagram')}</span>
         </a>
       )}
       {show.links.web && (
@@ -66,9 +69,10 @@ const hasMainLink = show.mainLink && show.mainLinkLabel;
           href={show.links.web}
           target="_blank"
           rel="noopener noreferrer"
-          class="text-brand hover:underline text-sm"
+          class="text-brand hover:underline text-sm inline-flex items-center gap-1.5"
         >
-          {t(locale, 'shows.linkWeb')}
+          <i class="fa-solid fa-globe" aria-hidden="true"></i>
+          <span>{t(locale, 'shows.linkWeb')}</span>
         </a>
       )}
     </div>

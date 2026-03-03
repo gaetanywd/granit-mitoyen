@@ -40,11 +40,14 @@ const { meta, hero, intro } = content;
     </div>
   )}
 
-  <p class="font-body mb-4 max-w-xl text-dark">
-    Email —{' '}
-    <a href={`mailto:${CONTACT_EMAIL}`} class="text-brand hover:underline">
-      {CONTACT_EMAIL}
-    </a>
+  <p class="font-body mb-4 max-w-xl text-dark flex items-center gap-2">
+    <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+    <span>
+      Email —{' '}
+      <a href={`mailto:${CONTACT_EMAIL}`} class="text-brand hover:underline">
+        {CONTACT_EMAIL}
+      </a>
+    </span>
   </p>
 
   <ul class="space-y-3 max-w-xl">
@@ -54,9 +57,10 @@ const { meta, hero, intro } = content;
           href={link.url}
           target="_blank"
           rel="noopener noreferrer"
-          class="text-brand hover:underline"
+          class="text-brand hover:underline inline-flex items-center gap-1.5"
         >
-          {t('fr', link.labelKey)}
+          {link.iconClass && <i class={link.iconClass} aria-hidden="true"></i>}
+          <span>{t('fr', link.labelKey)}</span>
         </a>
       </li>
     ))}

@@ -10,6 +10,7 @@ export interface ContactLink {
     | 'contact.instagram'
     | 'contact.youtube'
     | 'contact.bandcamp';
+  iconClass?: string;
   external?: boolean;
 }
 
@@ -20,24 +21,28 @@ const baseLinks: ContactLink[] = [
     type: 'facebook',
     url: 'https://www.facebook.com/granit.mitoyen',
     labelKey: 'contact.facebook',
+    iconClass: 'fa-brands fa-facebook-f',
     external: true,
   },
   {
     type: 'instagram',
     url: 'https://www.instagram.com/granit.mitoyen/',
     labelKey: 'contact.instagram',
+    iconClass: 'fa-brands fa-instagram',
     external: true,
   },
   {
     type: 'youtube',
     url: 'https://www.youtube.com/@GranitMitoyen',
     labelKey: 'contact.youtube',
+    iconClass: 'fa-brands fa-youtube',
     external: true,
   },
   {
     type: 'bandcamp',
     url: 'https://granitmitoyen.bandcamp.com/',
     labelKey: 'contact.bandcamp',
+    iconClass: 'fa-brands fa-bandcamp',
     external: true,
   },
 ];

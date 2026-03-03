@@ -148,9 +148,10 @@ const hasShop = Boolean(shopUrl?.startsWith('http'));
               href={shopUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="hover:text-blue-300 transition-colors"
+              class="hover:text-blue-300 transition-colors inline-flex items-center gap-1.5"
             >
-              {t(locale, 'nav.shop')}
+              <span>{t(locale, 'nav.shop')}</span>
+              <i class="fa-solid fa-arrow-up-right-from-square text-xs" aria-hidden="true"></i>
             </a>
           )}
           <a
@@ -245,9 +246,10 @@ const hasShop = Boolean(shopUrl?.startsWith('http'));
           href={shopUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="hover:text-blue-300 transition-colors"
+          class="hover:text-blue-300 transition-colors inline-flex items-center gap-1.5"
         >
-          {t(locale, 'nav.shop')}
+          <span>{t(locale, 'nav.shop')}</span>
+          <i class="fa-solid fa-arrow-up-right-from-square text-xs" aria-hidden="true"></i>
         </a>
       )}
       <a

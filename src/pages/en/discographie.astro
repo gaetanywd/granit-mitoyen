@@ -8,9 +8,9 @@ const SOUNDCLOUD_URL = import.meta.env.PUBLIC_KILLBIRGAHN_SOUNDCLOUD_URL as stri
 const DEEZER_URL = import.meta.env.PUBLIC_KILLBIRGAHN_DEEZER_URL as string | undefined;
 
 const streamingLinks = [
-  { label: 'YouTube', url: YOUTUBE_URL },
-  { label: 'SoundCloud', url: SOUNDCLOUD_URL },
-  { label: 'Deezer', url: DEEZER_URL },
+  { label: 'YouTube', url: YOUTUBE_URL, iconClass: 'fa-brands fa-youtube' },
+  { label: 'SoundCloud', url: SOUNDCLOUD_URL, iconClass: 'fa-brands fa-soundcloud' },
+  { label: 'Deezer', url: DEEZER_URL, iconClass: 'fa-brands fa-deezer' },
 ].filter((link) => Boolean(link.url && link.url.startsWith('http')));
 
 const siteUrl = import.meta.env.PUBLIC_SITE_URL ?? 'https://granitmitoyen.com';
@@ -82,9 +82,10 @@ const pageDescription =
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center justify-center px-4 py-2 rounded-md bg-dark text-cream font-body text-sm hover:bg-blue-800 transition-colors"
+                class="inline-flex items-center justify-center px-4 py-2 rounded-md bg-dark text-cream font-body text-sm hover:bg-blue-800 transition-colors gap-1.5"
               >
-                {link.label}
+                {link.iconClass && <i class={link.iconClass} aria-hidden="true"></i>}
+                <span>{link.label}</span>
               </a>
             ))}
           </div>
