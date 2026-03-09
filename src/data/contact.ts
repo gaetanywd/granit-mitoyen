@@ -14,38 +14,52 @@ export interface ContactLink {
   external?: boolean;
 }
 
+// URL du press kit : vient du .env (PUBLIC_PRESS_KIT_URL) pour être facilement modifiable.
 const PRESS_KIT_URL = import.meta.env.PUBLIC_PRESS_KIT_URL as string | undefined;
 
-const baseLinks: ContactLink[] = [
-  {
+// Liens de réseaux sociaux : viennent UNIQUEMENT du .env.
+// Si une variable manque ou est invalide, le lien est totalement caché.
+const FACEBOOK_URL = import.meta.env.FACEBOOK_URL as string | undefined;
+const INSTAGRAM_URL = import.meta.env.INSTAGRAM_URL as string | undefined;
+const YOUTUBE_URL = import.meta.env.YOUTUBE_URL as string | undefined;
+const BANDCAMP_URL = import.meta.env.BANDCAMP_URL as string | undefined;
+
+// On construit d'abord une liste "brute" qui peut contenir des entrées nulles,
+// puis on filtre pour ne garder que les liens avec une URL HTTP valide.
+const rawLinks: (ContactLink | null)[] = [
+  FACEBOOK_URL && {
     type: 'facebook',
-    url: 'https://www.facebook.com/granit.mitoyen',
+    url: FACEBOOK_URL,
     labelKey: 'contact.facebook',
     iconClass: 'fa-brands fa-facebook-f',
     external: true,
   },
-  {
+  INSTAGRAM_URL && {
     type: 'instagram',
-    url: 'https://www.instagram.com/granit.mitoyen/',
+    url: INSTAGRAM_URL,
     labelKey: 'contact.instagram',
     iconClass: 'fa-brands fa-instagram',
     external: true,
   },
-  {
+  YOUTUBE_URL && {
     type: 'youtube',
-    url: 'https://www.youtube.com/@GranitMitoyen',
+    url: YOUTUBE_URL,
     labelKey: 'contact.youtube',
     iconClass: 'fa-brands fa-youtube',
     external: true,
   },
-  {
+  BANDCAMP_URL && {
     type: 'bandcamp',
-    url: 'https://granitmitoyen.bandcamp.com/',
+    url: BANDCAMP_URL,
     labelKey: 'contact.bandcamp',
     iconClass: 'fa-brands fa-bandcamp',
     external: true,
   },
 ];
+
+const baseLinks: ContactLink[] = rawLinks.filter(
+  (link): link is ContactLink => Boolean(link && link.url && link.url.startsWith('http')),
+);
 
 export const contactLinks: ContactLink[] = baseLinks;
 
