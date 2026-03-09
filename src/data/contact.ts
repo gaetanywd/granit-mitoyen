@@ -1,6 +1,6 @@
 // Liens de contact du groupe : email + réseaux. Les libellés sont en i18n (contact.email, contact.facebook, etc.).
 
-export type ContactType = 'facebook' | 'instagram' | 'youtube' | 'bandcamp';
+export type ContactType = 'facebook' | 'instagram' | 'youtube' | 'bandcamp' | 'soundcloud';
 
 export interface ContactLink {
   type: ContactType;
@@ -9,7 +9,8 @@ export interface ContactLink {
     | 'contact.facebook'
     | 'contact.instagram'
     | 'contact.youtube'
-    | 'contact.bandcamp';
+    | 'contact.bandcamp'
+    | 'contact.soundcloud';
   iconClass?: string;
   external?: boolean;
 }
@@ -23,6 +24,7 @@ const FACEBOOK_URL = import.meta.env.FACEBOOK_URL as string | undefined;
 const INSTAGRAM_URL = import.meta.env.INSTAGRAM_URL as string | undefined;
 const YOUTUBE_URL = import.meta.env.YOUTUBE_URL as string | undefined;
 const BANDCAMP_URL = import.meta.env.BANDCAMP_URL as string | undefined;
+const SOUNDCLOUD_URL = import.meta.env.SOUNDCLOUD_URL as string | undefined;
 
 // On construit d'abord une liste "brute" qui peut contenir des entrées nulles,
 // puis on filtre pour ne garder que les liens avec une URL HTTP valide.
@@ -55,10 +57,19 @@ const rawLinks: (ContactLink | null)[] = [
     iconClass: 'fa-brands fa-bandcamp',
     external: true,
   },
+  SOUNDCLOUD_URL && {
+    type: 'soundcloud',
+    url: SOUNDCLOUD_URL,
+    labelKey: 'contact.soundcloud',
+    iconClass: 'fa-brands fa-soundcloud',
+    external: true,
+  },
 ];
 
 const baseLinks: ContactLink[] = rawLinks.filter(
-  (link): link is ContactLink => Boolean(link && link.url && link.url.startsWith('http')),
+  // On garde tous les liens dont l'URL est définie dans le .env,
+  // sans imposer de format particulier ici (schéma http/https géré côté config).
+  (link): link is ContactLink => Boolean(link && link.url),
 );
 
 export const contactLinks: ContactLink[] = baseLinks;
