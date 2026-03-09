@@ -64,16 +64,16 @@ const pageDescription =
       </p>
     </div>
 
-    <div class="max-w-md mx-auto text-center space-y-4">
-      <img
-        src="/images/Granit Mitoyen - Lands Of Killbirgahn cover.jpg"
-        alt="Lands Of Killbirgahn – pochette de l’album"
-        class="w-full rounded-lg shadow-md mx-auto"
-        loading="lazy"
-        decoding="async"
-      />
+    {streamingLinks.length > 0 && (
+      <div class="max-w-md mx-auto text-center space-y-4">
+        <img
+          src="/images/Granit Mitoyen - Lands Of Killbirgahn cover.jpg"
+          alt="Lands Of Killbirgahn – pochette de l’album"
+          class="w-full rounded-lg shadow-md mx-auto"
+          loading="lazy"
+          decoding="async"
+        />
 
-      {streamingLinks.length > 0 && (
         <div class="mt-2">
           <h3 class="font-subtitle text-dark text-xl font-semibold mb-3">
             Écouter l’album
@@ -92,8 +92,8 @@ const pageDescription =
             ))}
           </div>
         </div>
-      )}
-    </div>
+      </div>
+    )}
   </section>
 
   <section class="space-y-6 max-w-3xl">
