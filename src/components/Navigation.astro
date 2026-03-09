@@ -86,6 +86,8 @@ const hasShop = Boolean(shopUrl?.startsWith('http'));
 <nav class="bg-dark text-white p-4 sticky top-0 z-10">
   <div class="container mx-auto space-y-3">
     <div class="flex items-center justify-between gap-3">
+      <div></div>
+
       <div class="flex items-center gap-3">
         <button
           type="button"
@@ -125,7 +127,7 @@ const hasShop = Boolean(shopUrl?.startsWith('http'));
           >
             {t(locale, 'nav.shows')}
           </a>
-          <a
+          <!-- <a
             href="/presentation"
             class:list={[
               "hover:text-blue-300 transition-colors",
@@ -133,7 +135,7 @@ const hasShop = Boolean(shopUrl?.startsWith('http'));
             ]}
           >
             {t(locale, 'nav.presentation')}
-          </a>
+          </a> -->
           <a
             href="/discographie"
             class:list={[
