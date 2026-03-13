@@ -4,6 +4,9 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
+    // URL publique du site.
+    // Astro l'utilise aussi pour les URLs absolues lors du build.
+    site: process.env.PUBLIC_SITE_URL ?? 'https://granitmitoyen.com',
     // Configuration principale du bundler Vite (CSS, JS, etc.)
     vite: {
         // @ts-ignore - le typage officiel Tailwind 4 pour Vite évolue encore

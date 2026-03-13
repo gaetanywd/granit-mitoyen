@@ -1,40 +1,60 @@
 import type { APIRoute } from 'astro';
 
-const siteUrl = import.meta.env.PUBLIC_SITE_URL ?? 'https://granitmitoyen.com';
+type LocalizedRoute = {
+  fr: string;
+  en: string;
+};
 
-// Liste des pages importantes FR/EN à exposer dans le sitemap.
-const routes = [
-  '/',
-  '/presentation',
-  '/killbirgahn',
-  '/shows',
-  '/medias',
-  '/contact',
-  '/en/',
-  '/en/presentation',
-  '/en/killbirgahn',
-  '/en/shows',
-  '/en/medias',
-  '/en/contact',
+// Sitemap statique et simple.
+// Le site a peu de pages, donc une liste explicite reste lisible et fiable.
+const localizedRoutes: LocalizedRoute[] = [
+  { fr: '/', en: '/en/' },
+  { fr: '/medias', en: '/en/medias' },
+  { fr: '/shows', en: '/en/shows' },
+  { fr: '/presentation', en: '/en/presentation' },
+  { fr: '/discographie', en: '/en/discographie' },
+  { fr: '/killbirgahn', en: '/en/killbirgahn' },
+  { fr: '/contact', en: '/en/contact' },
 ];
 
-export const GET: APIRoute = () => {
-  const urls = routes
-    .map((path) => {
-      const loc = new URL(path, siteUrl).toString();
-      return `<url><loc>${loc}</loc></url>`;
-    })
-    .join('');
+const siteUrl = import.meta.env.PUBLIC_SITE_URL ?? 'https://granitmitoyen.com';
 
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls}
-</urlset>`;
+function absoluteUrl(path: string): string {
+  return new URL(path, siteUrl).toString();
+}
+
+function buildUrlEntry(path: string, alternatePath: string, locale: 'fr' | 'en'): string {
+  const currentUrl = absoluteUrl(path);
+  const frUrl = absoluteUrl(locale === 'fr' ? path : alternatePath);
+  const enUrl = absoluteUrl(locale === 'en' ? path : alternatePath);
+  const defaultUrl = frUrl;
+
+  return [
+    '  <url>',
+    `    <loc>${currentUrl}</loc>`,
+    `    <xhtml:link rel="alternate" hreflang="fr" href="${frUrl}" />`,
+    `    <xhtml:link rel="alternate" hreflang="en" href="${enUrl}" />`,
+    `    <xhtml:link rel="alternate" hreflang="x-default" href="${defaultUrl}" />`,
+    '  </url>',
+  ].join('\n');
+}
+
+export const GET: APIRoute = () => {
+  const urlEntries = localizedRoutes.flatMap((route) => [
+    buildUrlEntry(route.fr, route.en, 'fr'),
+    buildUrlEntry(route.en, route.fr, 'en'),
+  ]);
+
+  const xml = [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">',
+    ...urlEntries,
+    '</urlset>',
+  ].join('\n');
 
   return new Response(xml, {
-    status: 200,
     headers: {
-      'Content-Type': 'application/xml',
+      'Content-Type': 'application/xml; charset=utf-8',
     },
   });
 };

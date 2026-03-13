@@ -5,11 +5,15 @@ import ShowCard from '../../components/ShowCard.astro';
 import { shows } from '../../data/shows';
 import content from '../../../content/shows.en.json';
 
-const { meta, hero, intro } = content;
+const { meta, hero } = content;
 
 const siteUrl = import.meta.env.PUBLIC_SITE_URL ?? 'https://granitmitoyen.com';
 
-const eventsSchema = shows.map((show) => ({
+const todayIso = new Date().toISOString().slice(0, 10);
+const upcomingShows = shows.filter((show) => show.dateIso >= todayIso);
+const pastShows = shows.filter((show) => show.dateIso < todayIso);
+
+const eventsSchema = upcomingShows.map((show) => ({
   '@context': 'https://schema.org',
   '@type': 'MusicEvent',
   name: `Granit Mitoyen - show`,
@@ -39,15 +43,35 @@ const eventsSchema = shows.map((show) => ({
     </p>
   )}
 
-  {intro?.text && (
-    <p class="font-body mb-6 text-dark max-w-2xl">
-      {intro.text}
-    </p>
-  )}
+  <section class="space-y-8 max-w-2xl">
+    <div>
+      <h2 class="font-subtitle text-dark text-2xl font-semibold mb-4">
+        Upcoming shows
+      </h2>
+      <div class="space-y-4">
+        {upcomingShows.length > 0 ? (
+          upcomingShows.map((show) => <ShowCard show={show} locale="en" />)
+        ) : (
+          <p class="font-body text-dark text-sm italic">
+            No upcoming shows for now.
+          </p>
+        )}
+      </div>
+    </div>
 
-  <div class="space-y-4 max-w-2xl">
-    {shows.map((show) => (
-      <ShowCard show={show} locale="en" />
-    ))}
-  </div>
+    <div>
+      <h2 class="font-subtitle text-dark text-2xl font-semibold mb-4">
+        Past shows
+      </h2>
+      <div class="space-y-4">
+        {pastShows.length > 0 ? (
+          pastShows.map((show) => <ShowCard show={show} locale="en" />)
+        ) : (
+          <p class="font-body text-dark text-sm italic">
+            No past shows for now.
+          </p>
+        )}
+      </div>
+    </div>
+  </section>
 </Layout>

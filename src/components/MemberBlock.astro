@@ -28,6 +28,8 @@ const loremText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed 
       src={member.image}
       alt={`${member.name}, ${t(locale, member.roleKey)}`}
       class="w-full h-auto rounded-lg object-cover max-h-96 md:max-h-none"
+      loading="lazy"
+      decoding="async"
     />
   </div>
   <div class:list={[!imageOnLeft && 'md:order-1']}>

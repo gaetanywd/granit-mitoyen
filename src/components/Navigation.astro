@@ -38,6 +38,14 @@ function buildLocalePath(targetLocale: Locale): string {
 const frUrl = buildLocalePath('fr');
 const enUrl = buildLocalePath('en');
 
+function buildNavPath(path: string): string {
+  if (locale === 'fr') {
+    return path;
+  }
+
+  return path === '/' ? '/en/' : `/en${path}`;
+}
+
 const isHome =
   currentPath === '/' ||
   currentPath === '/en' ||
@@ -64,8 +72,8 @@ const isPresentation =
 const isDiscography =
   currentPath === '/discographie' ||
   currentPath === '/discographie/' ||
-  currentPath === '/en/discography' ||
-  currentPath === '/en/discography/';
+  currentPath === '/en/discographie' ||
+  currentPath === '/en/discographie/';
 
 const isContact =
   currentPath === '/contact' ||
@@ -78,8 +86,14 @@ const hasShop = Boolean(shopUrl?.startsWith('http'));
 ---
 
 <div>
-  <a href="/">
-    <img src="/images/LOGO_2026_Black2.png" alt="Granit Mitoyen" class="h-60 m-auto my-5" />
+  <a href={buildNavPath('/')}>
+    <img
+      src="/images/LOGO_2026_Black2.png"
+      alt="Logo Granit Mitoyen"
+      class="h-60 m-auto my-5"
+      decoding="async"
+      fetchpriority="high"
+    />
   </a>
 </div>
 
@@ -101,7 +115,7 @@ const hasShop = Boolean(shopUrl?.startsWith('http'));
 
         <div class="hidden sm:flex gap-6">
           <a
-            href="/"
+            href={buildNavPath('/')}
             class:list={[
               "hover:text-blue-300 transition-colors",
               isHome && "text-blue-400 font-bold",
@@ -110,7 +124,7 @@ const hasShop = Boolean(shopUrl?.startsWith('http'));
             {t(locale, 'nav.home')}
           </a>
           <a
-            href="/medias"
+            href={buildNavPath('/medias')}
             class:list={[
               "hover:text-blue-300 transition-colors",
               isMedias && "text-blue-400 font-bold",
@@ -119,7 +133,7 @@ const hasShop = Boolean(shopUrl?.startsWith('http'));
             {t(locale, 'nav.medias')}
           </a>
           <a
-            href="/shows"
+            href={buildNavPath('/shows')}
             class:list={[
               "hover:text-blue-300 transition-colors",
               isShows && "text-blue-400 font-bold",
@@ -137,7 +151,7 @@ const hasShop = Boolean(shopUrl?.startsWith('http'));
             {t(locale, 'nav.presentation')}
           </a> -->
           <a
-            href="/discographie"
+            href={buildNavPath('/discographie')}
             class:list={[
               "hover:text-blue-300 transition-colors",
               isDiscography && "text-blue-400 font-bold",
@@ -157,7 +171,7 @@ const hasShop = Boolean(shopUrl?.startsWith('http'));
             </a>
           )}
           <a
-            href="/contact"
+            href={buildNavPath('/contact')}
             class:list={[
               "hover:text-blue-300 transition-colors",
               isContact && "text-blue-400 font-bold",
@@ -199,7 +213,7 @@ const hasShop = Boolean(shopUrl?.startsWith('http'));
       class="flex flex-col gap-2 border-t border-white/20 pt-3 sm:hidden hidden"
     >
       <a
-        href="/"
+        href={buildNavPath('/')}
         class:list={[
           "hover:text-blue-300 transition-colors",
           isHome && "text-blue-400 font-bold",
@@ -208,7 +222,7 @@ const hasShop = Boolean(shopUrl?.startsWith('http'));
         {t(locale, 'nav.home')}
       </a>
       <a
-        href="/medias"
+        href={buildNavPath('/medias')}
         class:list={[
           "hover:text-blue-300 transition-colors",
           isMedias && "text-blue-400 font-bold",
@@ -217,7 +231,7 @@ const hasShop = Boolean(shopUrl?.startsWith('http'));
         {t(locale, 'nav.medias')}
       </a>
       <a
-        href="/shows"
+        href={buildNavPath('/shows')}
         class:list={[
           "hover:text-blue-300 transition-colors",
           isShows && "text-blue-400 font-bold",
@@ -226,7 +240,7 @@ const hasShop = Boolean(shopUrl?.startsWith('http'));
         {t(locale, 'nav.shows')}
       </a>
       <a
-        href="/presentation"
+        href={buildNavPath('/presentation')}
         class:list={[
           "hover:text-blue-300 transition-colors",
           isPresentation && "text-blue-400 font-bold",
@@ -235,7 +249,7 @@ const hasShop = Boolean(shopUrl?.startsWith('http'));
         {t(locale, 'nav.presentation')}
       </a>
       <a
-        href="/discographie"
+        href={buildNavPath('/discographie')}
         class:list={[
           "hover:text-blue-300 transition-colors",
           isDiscography && "text-blue-400 font-bold",
@@ -255,7 +269,7 @@ const hasShop = Boolean(shopUrl?.startsWith('http'));
         </a>
       )}
       <a
-        href="/contact"
+        href={buildNavPath('/contact')}
         class:list={[
           "hover:text-blue-300 transition-colors",
           isContact && "text-blue-400 font-bold",

@@ -16,6 +16,11 @@ interface Props {
   // Description SEO de la page (optionnelle).
   // Si absente, on utilise une description courte par défaut.
   description?: string;
+  // Image de partage optionnelle.
+  // Si absente, on garde l'image SEO par défaut du site.
+  image?: string;
+  // Permet de desindexer une page si besoin plus tard.
+  noindex?: boolean;
   // Données structurées additionnelles à injecter en JSON-LD.
   structuredData?: unknown[];
 }
@@ -30,6 +35,8 @@ const currentLocale = (Astro.currentLocale ?? 'fr') as Locale;
 const {
   title = t(currentLocale, 'layout.siteTitle'),
   description = t(currentLocale, 'layout.defaultDescription'),
+  image,
+  noindex = false,
   structuredData = [],
 } = Astro.props;
 
@@ -61,24 +68,33 @@ const alternateLinks = [
 // Données de base du site, selon la langue courante.
 const siteData = currentLocale === 'en' ? siteEn : siteFr;
 const siteName = siteData.siteName ?? 'Granit Mitoyen';
+const localeCode = currentLocale === 'fr' ? 'fr_FR' : 'en_US';
+const alternateLocaleCode = currentLocale === 'fr' ? 'en_US' : 'fr_FR';
 
 // Image de partage par défaut pour Open Graph / Twitter.
 const defaultOgImage =
   import.meta.env.PUBLIC_OG_IMAGE ?? '/images/Granit Mitoyen - Lands Of Killbirgahn cover.jpg';
-const ogImageUrl = new URL(defaultOgImage, siteUrl).toString();
+const shareImage = image ?? defaultOgImage;
+const ogImageUrl = new URL(shareImage, siteUrl).toString();
+const ogImageAlt = `${siteName} - ${title}`;
+const robotsContent = noindex
+  ? 'noindex, nofollow'
+  : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
 
 // Données structurées de base pour le groupe.
 const musicGroupSchema = {
   '@context': 'https://schema.org',
   '@type': 'MusicGroup',
+  '@id': `${siteUrl}#music-group`,
   name: siteName,
-  genre: 'Stoner Metal',
+  description: siteData.shortSeoSentence ?? description,
+  genre: ['Stoner Metal', 'Metal'],
   url: siteUrl,
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: siteData.city,
-    addressRegion: siteData.region,
-    addressCountry: siteData.country,
+  image: ogImageUrl,
+  email: CONTACT_EMAIL,
+  foundingLocation: {
+    '@type': 'Place',
+    name: `${siteData.city}, ${siteData.region}, ${siteData.country}`,
   },
   sameAs: Object.values(siteData.links).filter(Boolean),
 };
@@ -106,6 +122,8 @@ const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
     />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="robots" content={robotsContent} />
+    <meta name="author" content={siteName} />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
     {alternateLinks.map((link) => (
@@ -115,16 +133,21 @@ const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
     <!-- Open Graph de base -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content={localeCode} />
+    <meta property="og:locale:alternate" content={alternateLocaleCode} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:alt" content={ogImageAlt} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:url" content={canonicalUrl} />
     <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
 
     {jsonLdItems.map((item) => (
       <script type="application/ld+json">
