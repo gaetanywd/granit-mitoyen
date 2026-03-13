@@ -73,7 +73,7 @@ const alternateLocaleCode = currentLocale === 'fr' ? 'en_US' : 'fr_FR';
 
 // Image de partage par défaut pour Open Graph / Twitter.
 const defaultOgImage =
-  import.meta.env.PUBLIC_OG_IMAGE ?? '/images/Granit Mitoyen - Lands Of Killbirgahn cover.jpg';
+  import.meta.env.PUBLIC_OG_IMAGE ?? '/images/Granit Mitoyen logo blanc orange.webp';
 const shareImage = image ?? defaultOgImage;
 const ogImageUrl = new URL(shareImage, siteUrl).toString();
 const ogImageAlt = `${siteName} - ${title}`;
