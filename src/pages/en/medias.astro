@@ -2,6 +2,7 @@
 // Media page (EN) — main texts loaded from an editable JSON file.
 import Layout from '../../layouts/Layout.astro';
 import ImageCard from '../../components/ImageCard.astro';
+import AlbumStreamingStatus from '../../components/AlbumStreamingStatus.astro';
 import content from '../../../content/medias.en.json';
 
 const { meta, hero, sections } = content;
@@ -17,6 +18,15 @@ const { meta, hero, sections } = content;
       {hero.subtitle}
     </p>
   )}
+
+  <div class="mb-8">
+    <AlbumStreamingStatus
+      imageSrc="/images/Granit Mitoyen - Lands Of Killbirgahn cover.jpg"
+      imageAlt="Lands Of Killbirgahn – album cover"
+      availableTitle="Listen to the album"
+      unavailableTitle='Album "Lands of Killbirghan" coming soon!'
+    />
+  </div>
 
   <div class="mb-8">
     <div class="aspect-video max-w-4xl mx-auto">

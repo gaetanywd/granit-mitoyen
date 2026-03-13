@@ -44,14 +44,14 @@ Checklist infra, Google et suivi pour le site vitrine. À cocher au fur et à me
   - Ville : Rennes (Bretagne, France)
   - Site : `https://granitmitoyen.com`
 - [ ] Ajouter logo, photos groupe, visuels d'album, quelques photos live
-- [ ] Ajouter une courte description FR mettant en avant : stoner metal, Rennes, Bretagne, univers Kill Birgahn
+- [ ] Ajouter une courte description FR mettant en avant : stoner metal, Rennes, Bretagne, univers Killbirgahn
 
 ---
 
 ## 5. Profils & backlinks
 
 - [ ] Mettre `https://granitmitoyen.com` comme site officiel sur : YouTube, Bandcamp, Spotify, Insta, Facebook, etc.
-- [ ] Vérifier que la bio courte FR/EN est cohérente partout (style + ville + "dark fantasy / Kill Birgahn")
+- [ ] Vérifier que la bio courte FR/EN est cohérente partout (style + ville + "dark fantasy / Killbirgahn")
 - [ ] Contacter :
   - [ ] 2–3 webzines / blogs metal/stoner pour une chronique / interview avec lien vers le site
   - [ ] Les salles / festivals où vous jouez pour qu'ils ajoutent un lien vers le site sur votre fiche

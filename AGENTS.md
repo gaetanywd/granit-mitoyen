@@ -2,7 +2,7 @@
 
 ## 📋 Description du projet
 
-Site vitrine du groupe de metal Stoner Granit Mitoyen. Site statique multilingue (FR/EN) présentant le groupe, ses membres, concerts, médias et l'album "Kill Birgahn".
+Site vitrine du groupe de metal Stoner Granit Mitoyen. Site statique multilingue (FR/EN) présentant le groupe, ses membres, concerts, médias et l'album "Killbirgahn".
 
 **⚠️ IMPORTANT**: Site vitrine = SEO doit être au top, comme si un expert SEO avait travaillé dessus (meta tags, structured data, performance, accessibilité, etc.)
 
@@ -55,7 +55,7 @@ Site vitrine du groupe de metal Stoner Granit Mitoyen. Site statique multilingue
 - **Dictionnaire**: `src/i18n/dict.ts` contient les traductions
 - **Pattern**: Chaque page existe en 2 versions (ex: `index.astro` et `en/index.astro`)
 
-## 🎵 Concept de l'album "Kill Birgahn"
+## 🎵 Concept de l'album "Killbirgahn"
 
 L'album raconte une histoire de dark fantasy apocalyptique en 7 morceaux :
 1. **Asel** - L'appel et la folie
@@ -96,7 +96,7 @@ npm run preview         # Preview du build
 
 1. **Accueil** (`index.astro`) - Présentation du groupe
 2. **Présentation** (`presentation.astro`) - Histoire et membres
-3. **Kill Birgahn** (`killbirgahn.astro`) - Album et tracklist
+3. **Killbirgahn** (`killbirgahn.astro`) - Album et tracklist
 4. **Concerts** (`shows.astro`) - Dates de concerts
 5. **Médias** (`medias.astro`) - Photos, vidéos
 6. **Contact** (`contact.astro`) - Informations de contact

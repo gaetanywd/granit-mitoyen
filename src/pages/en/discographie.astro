@@ -1,6 +1,7 @@
 ---
 // Discography page (EN): album overview and main streaming links.
 import Layout from '../../layouts/Layout.astro';
+import AlbumStreamingStatus from '../../components/AlbumStreamingStatus.astro';
 
 // Optional listening links, configured via public environment variables.
 const YOUTUBE_URL = import.meta.env.PUBLIC_KILLBIRGAHN_YOUTUBE_URL as string | undefined;
@@ -35,7 +36,9 @@ const albumSchema = {
     { '@type': 'MusicRecording', position: 6, name: 'Psychedelic Dream' },
     { '@type': 'MusicRecording', position: 7, name: 'Heavy Wolf' },
   ],
-  sameAs: streamingLinks.map((link) => link.url),
+  sameAs: [YOUTUBE_URL, SOUNDCLOUD_URL, DEEZER_URL].filter(
+    (url): url is string => Boolean(url && url.startsWith('http'))
+  ),
 };
 
 const structuredData = [albumSchema];
@@ -62,36 +65,12 @@ const pageDescription =
       </p>
     </div>
 
-    {streamingLinks.length > 0 && (
-      <div class="max-w-md mx-auto text-center space-y-4">
-        <img
-          src="/images/Granit Mitoyen - Lands Of Killbirgahn cover.jpg"
-          alt="Lands Of Killbirgahn – album cover"
-          class="w-full rounded-lg shadow-md mx-auto"
-          loading="lazy"
-          decoding="async"
-        />
-
-        <div class="mt-2">
-          <h3 class="font-subtitle text-dark text-xl font-semibold mb-3">
-            Listen to the album
-          </h3>
-          <div class="flex flex-wrap justify-center gap-3">
-            {streamingLinks.map((link) => (
-              <a
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center justify-center px-4 py-2 rounded-md bg-dark text-cream font-body text-sm hover:bg-blue-800 transition-colors gap-1.5"
-              >
-                {link.iconClass && <i class={link.iconClass} aria-hidden="true"></i>}
-                <span>{link.label}</span>
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
-    )}
+    <AlbumStreamingStatus
+      imageSrc="/images/Granit Mitoyen - Lands Of Killbirgahn cover.jpg"
+      imageAlt="Lands Of Killbirgahn – album cover"
+      availableTitle="Listen to the album"
+      unavailableTitle='Album "Lands of Killbirghan" coming soon!'
+    />
   </section>
 
   <section class="space-y-6 max-w-3xl">

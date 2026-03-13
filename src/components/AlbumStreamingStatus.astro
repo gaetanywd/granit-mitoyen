@@ -1,0 +1,79 @@
+---
+type StreamingPlatform = {
+  label: string;
+  iconClass?: string;
+};
+
+interface Props {
+  imageSrc: string;
+  imageAlt: string;
+  availableTitle?: string;
+  unavailableTitle?: string;
+}
+
+const {
+  imageSrc,
+  imageAlt,
+  availableTitle = 'Ecouter l album',
+  unavailableTitle = 'Album bientot disponible !',
+} = Astro.props;
+
+// Liens d'ecoute optionnels, configures via les variables d'environnement publiques.
+const YOUTUBE_URL = import.meta.env.PUBLIC_KILLBIRGAHN_YOUTUBE_URL as string | undefined;
+const SOUNDCLOUD_URL = import.meta.env.PUBLIC_KILLBIRGAHN_SOUNDCLOUD_URL as string | undefined;
+const DEEZER_URL = import.meta.env.PUBLIC_KILLBIRGAHN_DEEZER_URL as string | undefined;
+
+const streamingLinks = [
+  { label: 'YouTube', url: YOUTUBE_URL, iconClass: 'fa-brands fa-youtube' },
+  { label: 'SoundCloud', url: SOUNDCLOUD_URL, iconClass: 'fa-brands fa-soundcloud' },
+  { label: 'Deezer', url: DEEZER_URL, iconClass: 'fa-brands fa-deezer' },
+].filter((link) => Boolean(link.url && link.url.startsWith('http')));
+
+const streamingPlatforms: StreamingPlatform[] = [
+  { label: 'YouTube', iconClass: 'fa-brands fa-youtube' },
+  { label: 'SoundCloud', iconClass: 'fa-brands fa-soundcloud' },
+  { label: 'Deezer', iconClass: 'fa-brands fa-deezer' },
+];
+
+const hasStreamingLinks = streamingLinks.length > 0;
+---
+
+<div class="max-w-md mx-auto text-center space-y-4">
+  {hasStreamingLinks && (
+    <img
+      src={imageSrc}
+      alt={imageAlt}
+      class="w-full rounded-lg shadow-md mx-auto"
+      loading="lazy"
+      decoding="async"
+    />
+  )}
+
+  <div class="mt-2">
+    <h3 class="font-subtitle text-dark text-xl font-semibold mb-3">
+      {hasStreamingLinks ? availableTitle : unavailableTitle}
+    </h3>
+    <div class="flex flex-wrap justify-center gap-3">
+      {hasStreamingLinks
+        ? streamingLinks.map((link) => (
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center px-4 py-2 rounded-md bg-dark text-cream font-body text-sm hover:bg-blue-800 transition-colors gap-1.5"
+            >
+              {link.iconClass && <i class={link.iconClass} aria-hidden="true"></i>}
+              <span>{link.label}</span>
+            </a>
+          ))
+        : streamingPlatforms.map((platform) => (
+            <div
+              class="inline-flex items-center justify-center px-4 py-2 rounded-md bg-gray-600 text-gray-200 font-body text-sm gap-1.5 opacity-80 cursor-wait"
+            >
+              {platform.iconClass && <i class={platform.iconClass} aria-hidden="true"></i>}
+              <span>{platform.label}</span>
+            </div>
+          ))}
+    </div>
+  </div>
+</div>
