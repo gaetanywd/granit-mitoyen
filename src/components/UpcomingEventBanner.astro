@@ -23,6 +23,13 @@ const title =
     ? 'Release party “Lands Of Killbirgahn”'
     : '“Lands Of Killbirgahn” release party';
 
+// Date + lieu (affichés sur le bandeau).
+// Si besoin, on pourra les rendre configurables via .env plus tard.
+const dateAndVenue =
+  locale === 'fr'
+    ? 'Jeudi 9 avril 2026 — Jardin Moderne (Rennes)'
+    : 'Thursday, April 9, 2026 — Jardin Moderne (Rennes, France)';
+
 const description =
   locale === 'fr'
     ? 'Granit Mitoyen fête son 1er album “Lands Of Killbirgahn” avec une release party pas comme les autres. Pour l’occasion, on a invité Witchorious, qu’on adore et qui va mettre le feu en tête d’affiche et Glam Dicinn pour une entrée bien mouvementée. Une soirée stoner metal explosive pour découvrir notre univers et vibrer avec des artistes qu’on kiffe.'
@@ -38,6 +45,10 @@ const fbLabel = locale === 'fr' ? 'Événement Facebook' : 'Facebook event';
       <div class="max-w-3xl">
         <p class="font-subtitle text-lg font-semibold tracking-wide">
           {title}
+        </p>
+        <p class="font-body text-cream/80 mt-1">
+          <i class="fa-regular fa-calendar mr-2" aria-hidden="true"></i>
+          <span>{dateAndVenue}</span>
         </p>
         <p class="font-body text-cream/90 mt-2 leading-relaxed">
           {description}
