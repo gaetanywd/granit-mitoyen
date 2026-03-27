@@ -150,8 +150,6 @@ const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
     <meta name="twitter:image:alt" content={ogImageAlt} />
 
     {jsonLdItems.map((item) => (
-      // Astro échappe le contenu des balises <script>. Pour du JSON-LD,
-      // on injecte la chaîne JSON telle quelle via `set:html`.
       <script
         type="application/ld+json"
         set:html={JSON.stringify(item).replaceAll('</script>', '<\\/script>')}
