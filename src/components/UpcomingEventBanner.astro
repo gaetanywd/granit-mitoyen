@@ -1,0 +1,77 @@
+---
+import type { Locale } from '../i18n/dict';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const ticketsUrl = import.meta.env.PUBLIC_RELEASE_PARTY_TICKETS_URL as string | undefined;
+const facebookEventUrl = import.meta.env.PUBLIC_RELEASE_PARTY_FACEBOOK_EVENT_URL as string | undefined;
+
+const hasTickets = Boolean(ticketsUrl && ticketsUrl.startsWith('http'));
+const hasFacebook = Boolean(facebookEventUrl && facebookEventUrl.startsWith('http'));
+
+// Si aucune URL n'est fournie, on n'affiche rien.
+if (!hasTickets && !hasFacebook) {
+  return null;
+}
+
+const title =
+  locale === 'fr'
+    ? 'Release party “Lands Of Killbirgahn”'
+    : '“Lands Of Killbirgahn” release party';
+
+const description =
+  locale === 'fr'
+    ? 'Granit Mitoyen fête son 1er album “Lands Of Killbirgahn” avec une release party pas comme les autres. Pour l’occasion, on a invité Witchorious, qu’on adore et qui va mettre le feu en tête d’affiche et Glam Dicinn pour une entrée bien mouvementée. Une soirée stoner metal explosive pour découvrir notre univers et vibrer avec des artistes qu’on kiffe.'
+    : 'Granit Mitoyen celebrates its first album “Lands Of Killbirgahn” with a one-of-a-kind release party. For the occasion, we invited Witchorious (we love them) to set the place on fire as headliner, and Glam Dicinn for a wild opening. An explosive stoner metal night to discover our universe and vibe with artists we truly dig.';
+
+const ctaLabel = locale === 'fr' ? 'Billetterie' : 'Get tickets';
+const fbLabel = locale === 'fr' ? 'Événement Facebook' : 'Facebook event';
+---
+
+<section class="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-dark text-cream border-y border-cream/15 mb-8">
+  <div class="container mx-auto px-6 py-6 max-w-3xl">
+    <div class="flex flex-col gap-4">
+      <div class="max-w-3xl">
+        <p class="font-subtitle text-lg font-semibold tracking-wide">
+          {title}
+        </p>
+        <p class="font-body text-cream/90 mt-2 leading-relaxed">
+          {description}
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-3 md:justify-end md:items-center shrink-0">
+        {hasTickets && (
+          <a
+            href={ticketsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center px-5 py-2.5 rounded-md bg-cream text-dark font-body font-semibold hover:bg-white transition-colors"
+          >
+            <span>{ctaLabel}</span>
+            <i class="fa-solid fa-ticket ml-2" aria-hidden="true"></i>
+          </a>
+        )}
+
+        {hasFacebook && (
+          <a
+            href={facebookEventUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center px-4 py-2.5 rounded-md border border-cream/40 text-cream font-body hover:border-cream hover:bg-cream/10 transition-colors"
+            aria-label={fbLabel}
+            title={fbLabel}
+          >
+            <i class="fa-brands fa-facebook-f mr-2" aria-hidden="true"></i>
+            <span>{fbLabel}</span>
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+

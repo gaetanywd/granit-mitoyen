@@ -4,11 +4,13 @@
 import Layout from '../../layouts/Layout.astro';
 import home from '../../../content/home.en.json';
 import { CONTACT_EMAIL } from '../../data/contact';
+import UpcomingEventBanner from '../../components/UpcomingEventBanner.astro';
 
 const { meta, hero, sections } = home;
 ---
 
 <Layout title={meta.title} description={meta.description}>
+	<UpcomingEventBanner locale="en" />
 	<div class="text-center mb-8">
 		<h1 class="font-title text-dark text-3xl font-bold title-underline inline-block">
 			{hero.title}
