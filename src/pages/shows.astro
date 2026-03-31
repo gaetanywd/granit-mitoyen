@@ -20,15 +20,37 @@ const eventsSchema = upcomingShows.map((show) => ({
   '@type': 'MusicEvent',
   name: `Granit Mitoyen - concert`,
   startDate: show.dateIso,
+  // Si on n'a pas l'heure de fin, on expose une fin “same-day” (événement à la journée).
+  // Ça évite le warning GSC sans inventer une durée.
+  endDate: show.dateIso,
   location: {
     '@type': 'Place',
     name: show.address,
-    address: show.address,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: show.address,
+    },
   },
   performer: {
     '@type': 'MusicGroup',
     name: 'Granit Mitoyen',
   },
+  organizer: {
+    '@type': 'MusicGroup',
+    name: 'Granit Mitoyen',
+    url: new URL('/', siteUrl).toString(),
+  },
+  description: `Concert de Granit Mitoyen à ${show.address} le ${show.dateLabel}.`,
+  image: new URL('/images/bandeau.png', siteUrl).toString(),
+  ...(show.mainLink
+    ? {
+        offers: {
+          '@type': 'Offer',
+          url: show.mainLink,
+          availability: 'https://schema.org/InStock',
+        },
+      }
+    : {}),
   eventStatus: 'https://schema.org/EventScheduled',
   url: new URL(Astro.url.pathname, siteUrl).toString(),
 }));
