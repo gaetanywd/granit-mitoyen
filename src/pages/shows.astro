@@ -29,6 +29,8 @@ const eventsSchema = upcomingShows.map((show) => ({
     address: {
       '@type': 'PostalAddress',
       streetAddress: show.address,
+      addressRegion: 'Bretagne',
+      addressCountry: 'FR',
     },
   },
   performer: {
@@ -60,6 +62,10 @@ const eventsSchema = upcomingShows.map((show) => ({
   <h1 class="font-title text-dark text-3xl font-bold mb-6 title-underline inline-block">
     {hero.title}
   </h1>
+
+  <p class="font-body text-dark mb-8 max-w-2xl">
+    {intro.text}
+  </p>
 
   <section class="space-y-8 max-w-2xl">
     <div>

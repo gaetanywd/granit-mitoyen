@@ -5,7 +5,7 @@ import ShowCard from '../../components/ShowCard.astro';
 import { shows } from '../../data/shows';
 import content from '../../../content/shows.en.json';
 
-const { meta, hero } = content;
+const { meta, hero, intro } = content;
 
 const siteUrl = import.meta.env.PUBLIC_SITE_URL ?? 'https://granitmitoyen.com';
 
@@ -34,6 +34,8 @@ const eventsSchema = upcomingShows.map((show) => ({
     address: {
       '@type': 'PostalAddress',
       streetAddress: show.address,
+      addressRegion: 'Brittany',
+      addressCountry: 'FR',
     },
   },
   performer: {
@@ -67,8 +69,14 @@ const eventsSchema = upcomingShows.map((show) => ({
   </h1>
 
   {hero.subtitle && (
-    <p class="font-subtitle mb-6 text-dark max-w-2xl">
+    <p class="font-subtitle mb-4 text-dark max-w-2xl">
       {hero.subtitle}
+    </p>
+  )}
+
+  {intro?.text && (
+    <p class="font-body text-dark mb-8 max-w-2xl">
+      {intro.text}
     </p>
   )}
 
