@@ -25,6 +25,22 @@ export interface Show {
 // Liste des concerts passés, du plus récent au plus ancien.
 export const shows: Show[] = [
   {
+    dateLabel: '13 juin 2026',
+    dateIso: '2026-06-13',
+    address: 'Open Air Heaven\'s Colt - Pipriac (35)',
+    links: {
+      instagram: 'https://www.instagram.com/p/DVtvaCLjZEc/',
+    },
+  },
+  {
+    dateLabel: '2 mai 2026',
+    dateIso: '2026-05-02',
+    address: 'Bar La Fontaine - St Péran (35)',
+    links: {
+      facebook: 'https://www.facebook.com/events/1312210754156368/',
+    },
+  },
+  {
     dateLabel: '9 avril 2026',
     dateIso: '2026-04-09',
     address: 'Jardin Moderne, Rennes',
