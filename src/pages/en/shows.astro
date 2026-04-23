@@ -49,15 +49,14 @@ const eventsSchema = upcomingShows.map((show) => ({
   },
   description: `Granit Mitoyen live show at ${show.address} on ${formatDateEn(show.dateIso)}.`,
   image: new URL('/images/bandeau.png', siteUrl).toString(),
-  ...(show.mainLink
-    ? {
-        offers: {
-          '@type': 'Offer',
-          url: show.mainLink,
-          availability: 'https://schema.org/InStock',
-        },
-      }
-    : {}),
+  offers: {
+    '@type': 'Offer',
+    price: 0,
+    priceCurrency: 'EUR',
+    availability: 'https://schema.org/InStock',
+    validFrom: show.dateIso,
+    ...(show.mainLink ? { url: show.mainLink } : {}),
+  },
   eventStatus: 'https://schema.org/EventScheduled',
   url: new URL(Astro.url.pathname, siteUrl).toString(),
 }));
