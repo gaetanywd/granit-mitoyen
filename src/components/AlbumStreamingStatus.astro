@@ -19,20 +19,27 @@ const {
 } = Astro.props;
 
 // Liens d'ecoute optionnels, configures via les variables d'environnement publiques.
+const DITTO_URL = import.meta.env.PUBLIC_KILLBIRGAHN_DITTO_URL as string | undefined;
+const SPOTIFY_URL = import.meta.env.PUBLIC_KILLBIRGAHN_SPOTIFY_URL as string | undefined;
 const YOUTUBE_URL = import.meta.env.PUBLIC_KILLBIRGAHN_YOUTUBE_URL as string | undefined;
-const SOUNDCLOUD_URL = import.meta.env.PUBLIC_KILLBIRGAHN_SOUNDCLOUD_URL as string | undefined;
+const YOUTUBE_MUSIC_URL = import.meta.env.PUBLIC_KILLBIRGAHN_YOUTUBE_MUSIC_URL as string | undefined;
 const DEEZER_URL = import.meta.env.PUBLIC_KILLBIRGAHN_DEEZER_URL as string | undefined;
+const SOUNDCLOUD_URL = import.meta.env.PUBLIC_KILLBIRGAHN_SOUNDCLOUD_URL as string | undefined;
 
 const streamingLinks = [
+  { label: 'Ditto', url: DITTO_URL, iconClass: 'fa-solid fa-compact-disc' },
+  { label: 'Spotify', url: SPOTIFY_URL, iconClass: 'fa-brands fa-spotify' },
   { label: 'YouTube', url: YOUTUBE_URL, iconClass: 'fa-brands fa-youtube' },
-  { label: 'SoundCloud', url: SOUNDCLOUD_URL, iconClass: 'fa-brands fa-soundcloud' },
+  { label: 'YouTube Music', url: YOUTUBE_MUSIC_URL, iconClass: 'fa-brands fa-youtube' },
   { label: 'Deezer', url: DEEZER_URL, iconClass: 'fa-brands fa-deezer' },
+  { label: 'SoundCloud', url: SOUNDCLOUD_URL, iconClass: 'fa-brands fa-soundcloud' },
 ].filter((link) => Boolean(link.url && link.url.startsWith('http')));
 
 const streamingPlatforms: StreamingPlatform[] = [
+  { label: 'Spotify', iconClass: 'fa-brands fa-spotify' },
   { label: 'YouTube', iconClass: 'fa-brands fa-youtube' },
-  { label: 'SoundCloud', iconClass: 'fa-brands fa-soundcloud' },
   { label: 'Deezer', iconClass: 'fa-brands fa-deezer' },
+  { label: 'SoundCloud', iconClass: 'fa-brands fa-soundcloud' },
 ];
 
 const hasStreamingLinks = streamingLinks.length > 0;
