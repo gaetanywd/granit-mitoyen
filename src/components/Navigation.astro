@@ -39,11 +39,12 @@ const frUrl = buildLocalePath('fr');
 const enUrl = buildLocalePath('en');
 
 function buildNavPath(path: string): string {
+  const withSlash = path === '/' ? '/' : `${path}/`;
   if (locale === 'fr') {
-    return path;
+    return withSlash;
   }
 
-  return path === '/' ? '/en/' : `/en${path}`;
+  return withSlash === '/' ? '/en/' : `/en${withSlash}`;
 }
 
 const isHome =
