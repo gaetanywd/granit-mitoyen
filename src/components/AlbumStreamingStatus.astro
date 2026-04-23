@@ -20,23 +20,33 @@ const {
 
 // Liens d'ecoute optionnels, configures via les variables d'environnement publiques.
 const SPOTIFY_URL = import.meta.env.PUBLIC_KILLBIRGAHN_SPOTIFY_URL as string | undefined;
+const APPLE_MUSIC_URL = import.meta.env.PUBLIC_KILLBIRGAHN_APPLE_MUSIC_URL as string | undefined;
 const YOUTUBE_URL = import.meta.env.PUBLIC_KILLBIRGAHN_YOUTUBE_URL as string | undefined;
 const YOUTUBE_MUSIC_URL = import.meta.env.PUBLIC_KILLBIRGAHN_YOUTUBE_MUSIC_URL as string | undefined;
 const DEEZER_URL = import.meta.env.PUBLIC_KILLBIRGAHN_DEEZER_URL as string | undefined;
+const AMAZON_MUSIC_URL = import.meta.env.PUBLIC_KILLBIRGAHN_AMAZON_MUSIC_URL as string | undefined;
+const TIDAL_URL = import.meta.env.PUBLIC_KILLBIRGAHN_TIDAL_URL as string | undefined;
 const SOUNDCLOUD_URL = import.meta.env.PUBLIC_KILLBIRGAHN_SOUNDCLOUD_URL as string | undefined;
+const KKBOX_URL = import.meta.env.PUBLIC_KILLBIRGAHN_KKBOX_URL as string | undefined;
 
 const streamingLinks = [
   { label: 'Spotify', url: SPOTIFY_URL, iconClass: 'fa-brands fa-spotify' },
+  { label: 'Apple Music', url: APPLE_MUSIC_URL, iconClass: 'fa-brands fa-apple' },
   { label: 'YouTube', url: YOUTUBE_URL, iconClass: 'fa-brands fa-youtube' },
   { label: 'YouTube Music', url: YOUTUBE_MUSIC_URL, iconClass: 'fa-brands fa-youtube' },
   { label: 'Deezer', url: DEEZER_URL, iconClass: 'fa-brands fa-deezer' },
+  { label: 'Amazon Music', url: AMAZON_MUSIC_URL, iconClass: 'fa-brands fa-amazon' },
+  { label: 'Tidal', url: TIDAL_URL, iconClass: 'fa-solid fa-music' },
   { label: 'SoundCloud', url: SOUNDCLOUD_URL, iconClass: 'fa-brands fa-soundcloud' },
+  { label: 'KKBOX', url: KKBOX_URL, iconClass: 'fa-solid fa-music' },
 ].filter((link) => Boolean(link.url && link.url.startsWith('http')));
 
 const streamingPlatforms: StreamingPlatform[] = [
   { label: 'Spotify', iconClass: 'fa-brands fa-spotify' },
+  { label: 'Apple Music', iconClass: 'fa-brands fa-apple' },
   { label: 'YouTube', iconClass: 'fa-brands fa-youtube' },
   { label: 'Deezer', iconClass: 'fa-brands fa-deezer' },
+  { label: 'Amazon Music', iconClass: 'fa-brands fa-amazon' },
   { label: 'SoundCloud', iconClass: 'fa-brands fa-soundcloud' },
 ];
 
